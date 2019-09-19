@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Decryption Trustee &mdash; ElectionGuard SDK  documentation</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono"><link rel="stylesheet" href="../../_static/typlog.css?v=0.7.3" type="text/css" />
+  <link rel="stylesheet" href="../../_static/theme.css?v=0.7.3" type="text/css" />
+      <link rel="index" title="Index" href="../../genindex.html"/>
+      <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="ElectionGuard SDK  documentation" href="../../index.html"/>
+      <link rel="up" title="API Reference" href="../index.html"/>
+      <link rel="next" title="Decryption Coordinator" href="coordinator.html"/>
+      <link rel="prev" title="Ballot Tracker" href="../voting/tracker.html"/>
+  <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create', '');ga('send', 'pageview');</script>
+  <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ElectionGuard SDK">
+  <meta property="og:title" content="Decryption Trustee">
+    <meta property="og:description" content="Building E2E verifiable elections.">
+  <meta name="twitter:card" content="summary">
+</head>
+<body role="document" data-page="api/decryption/trustee">
+  <header class="t-head">
+    <div class="t-head_menu"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M64 384h384v-42.666H64V384zm0-106.666h384v-42.667H64v42.667zM64 128v42.665h384V128H64z"/></svg></div>
+    <a class="t-head_logo" href="../../index.html">ElectionGuard SDK
+    </a>
+  </header>
+  <aside class="t-sidebar">
+    <div class="t-sidebar_close">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M405 136.798L375.202 107 256 226.202 136.798 107 107 136.798 226.202 256 107 375.202 136.798 405 256 285.798 375.202 405 405 375.202 285.798 256z"/></svg>
+    </div>
+    <div class="inner">
+<a class="logo" href="../../index.html">
+    ElectionGuard SDK
+</a><div class="logo_desc">Building E2E verifiable elections.</div>
+<div class="github_wrap">
+  <a class="github" href="https://github.com/microsoft/ElectionGuard-SDK" target="_blank">
+    <span class="github_icon"></span>
+    <span class="github_stars">
+      <strong>-</strong>stars
+    </span>
+    <span class="github_forks">
+      <strong>-</strong>forks
+    </span>
+  </a>
+</div><div class="globaltoc">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../keyceremony.html">Key Ceremony</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../voting.html">Voting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../decryption.html">Decryption</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../keyceremony/trustee.html">Key Ceremony Trustee</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../keyceremony/coordinator.html">Key Ceremony Coordinator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../keyceremony/messages.html">Key Ceremony Messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../voting/encrypter.html">Voting Encrypter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../voting/coordinator.html">Voting Coordinator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../voting/messages.html">Voting Messsages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../voting/tracker.html">Ballot Tracker</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Decryption Trustee</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coordinator.html">Decryption Coordinator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="messages.html">Decryption Messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../trustee_state.html">Trustee State</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../crypto.html">Crypto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../max_values.html">Maximum Values</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">Example Clients</a></li>
+</ul>
+
+</div>
+<div id="searchbox">
+  <form class="search" action="../../search.html" method="get">
+    <div class="input-group">
+      <input type="text" name="q" placeholder="Search" />
+      <button type="submit">Go</button>
+    </div>
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+    </div>
+  </aside>
+  <div class="t-content">
+    <div class="t-body yue">
+  <div class="section" id="decryption-trustee">
+<h1>Decryption Trustee<a class="headerlink" href="#decryption-trustee" title="Permalink to this headline">¶</a></h1>
+<dl class="typedef">
+<dt id="c.Decryption_Trustee">
+<span class="target" id="decryption_2trustee_8h_1ab5b150dc2411e83b3c0d9baa3f004829"></span><em class="property">typedef </em>struct Decryption_Trustee_s* <code class="descname">Decryption_Trustee</code><a class="headerlink" href="#c.Decryption_Trustee" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<div class="section" id="initialization-and-freeing">
+<h2>Initialization and Freeing<a class="headerlink" href="#initialization-and-freeing" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="c.Decryption_Trustee_new">
+<span class="target" id="decryption_2trustee_8h_1ab1ec3c7a4a87132b63991aac67b76f81"></span>struct <a class="reference internal" href="#c.Decryption_Trustee_new_r" title="Decryption_Trustee_new_r">Decryption_Trustee_new_r</a> <code class="descname">Decryption_Trustee_new</code><span class="sig-paren">(</span>uint32_t<em>&nbsp;num_trustees</em>, uint32_t<em>&nbsp;threshold</em>, uint32_t<em>&nbsp;num_selections</em>, struct  <a class="reference internal" href="../trustee_state.html#c.trustee_state" title="trustee_state">trustee_state</a><em>&nbsp;state</em><span class="sig-paren">)</span><a class="headerlink" href="#c.Decryption_Trustee_new" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new trustee. </p>
+<p>Does not free the trustee state. </p>
+</dd></dl>
+
+<dl class="struct">
+<dt id="c.Decryption_Trustee_new_r">
+<span class="target" id="struct_decryption___trustee__new__r"></span><em class="property">struct </em><code class="descname">Decryption_Trustee_new_r</code><a class="headerlink" href="#c.Decryption_Trustee_new_r" title="Permalink to this definition">¶</a></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="variable">
+<dt id="c.Decryption_Trustee_new_r::status">
+<span class="target" id="struct_decryption___trustee__new__r_1aafea7519feaac178887cdd7df7d0d79f"></span><a class="reference internal" href="#c.Decryption_Trustee_status" title="Decryption_Trustee_status">Decryption_Trustee_status</a> <code class="descname">status</code><a class="headerlink" href="#c.Decryption_Trustee_new_r::status" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="variable">
+<dt id="c.Decryption_Trustee_new_r::decryptor">
+<span class="target" id="struct_decryption___trustee__new__r_1a134e54280f351471b7cb64891e3cce84"></span><a class="reference internal" href="#c.Decryption_Trustee" title="Decryption_Trustee">Decryption_Trustee</a> <code class="descname">decryptor</code><a class="headerlink" href="#c.Decryption_Trustee_new_r::decryptor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.Decryption_Trustee_free">
+<span class="target" id="decryption_2trustee_8h_1a3cf26642442715c6411fba37d144dbac"></span>void <code class="descname">Decryption_Trustee_free</code><span class="sig-paren">(</span><a class="reference internal" href="#c.Decryption_Trustee" title="Decryption_Trustee">Decryption_Trustee</a><em>&nbsp;d</em><span class="sig-paren">)</span><a class="headerlink" href="#c.Decryption_Trustee_free" title="Permalink to this definition">¶</a></dt>
+<dd><p>Free a trustee. </p>
+</dd></dl>
+
+</div>
+<div class="section" id="tallying">
+<h2>Tallying<a class="headerlink" href="#tallying" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="c.Decryption_Trustee_tally_voting_record">
+<span class="target" id="decryption_2trustee_8h_1a93b24016fe4addbf53f5b31e83a5f166"></span>enum <a class="reference internal" href="#c.Decryption_Trustee_status" title="Decryption_Trustee_status">Decryption_Trustee_status</a> <code class="descname">Decryption_Trustee_tally_voting_record</code><span class="sig-paren">(</span><a class="reference internal" href="#c.Decryption_Trustee" title="Decryption_Trustee">Decryption_Trustee</a><em>&nbsp;d</em>, FILE *<em>&nbsp;in</em><span class="sig-paren">)</span><a class="headerlink" href="#c.Decryption_Trustee_tally_voting_record" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse a voting record, tally it, and store the encrypted tally of all the votes. </p>
+</dd></dl>
+
+</div>
+<div class="section" id="announcing">
+<h2>Announcing<a class="headerlink" href="#announcing" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="c.Decryption_Trustee_compute_share">
+<span class="target" id="decryption_2trustee_8h_1aaf198046deaf4e4d153e3c9d429acdc1"></span>struct <a class="reference internal" href="#c.Decryption_Trustee_compute_share_r" title="Decryption_Trustee_compute_share_r">Decryption_Trustee_compute_share_r</a> <code class="descname">Decryption_Trustee_compute_share</code><span class="sig-paren">(</span><a class="reference internal" href="#c.Decryption_Trustee" title="Decryption_Trustee">Decryption_Trustee</a><em>&nbsp;d</em><span class="sig-paren">)</span><a class="headerlink" href="#c.Decryption_Trustee_compute_share" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decrypt this trustee’s share of the tally. </p>
+</dd></dl>
+
+<dl class="struct">
+<dt id="c.Decryption_Trustee_compute_share_r">
+<span class="target" id="struct_decryption___trustee__compute__share__r"></span><em class="property">struct </em><code class="descname">Decryption_Trustee_compute_share_r</code><a class="headerlink" href="#c.Decryption_Trustee_compute_share_r" title="Permalink to this definition">¶</a></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="variable">
+<dt id="c.Decryption_Trustee_compute_share_r::status">
+<span class="target" id="struct_decryption___trustee__compute__share__r_1a842ab169020f1c8c49bf6d2b32caaee4"></span><a class="reference internal" href="#c.Decryption_Trustee_status" title="Decryption_Trustee_status">Decryption_Trustee_status</a> <code class="descname">status</code><a class="headerlink" href="#c.Decryption_Trustee_compute_share_r::status" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="variable">
+<dt id="c.Decryption_Trustee_compute_share_r::share">
+<span class="target" id="struct_decryption___trustee__compute__share__r_1a59221eb1eaf44b1662ecaab2d4795a4b"></span>struct <a class="reference internal" href="messages.html#c.decryption_share" title="decryption_share">decryption_share</a> <code class="descname">share</code><a class="headerlink" href="#c.Decryption_Trustee_compute_share_r::share" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="compensating">
+<h2>Compensating<a class="headerlink" href="#compensating" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="c.Decryption_Trustee_compute_fragments">
+<span class="target" id="decryption_2trustee_8h_1ae817a55b752d4be39477eaddffd366aa"></span>struct <a class="reference internal" href="#c.Decryption_Trustee_compute_fragments_r" title="Decryption_Trustee_compute_fragments_r">Decryption_Trustee_compute_fragments_r</a> <code class="descname">Decryption_Trustee_compute_fragments</code><span class="sig-paren">(</span><a class="reference internal" href="#c.Decryption_Trustee" title="Decryption_Trustee">Decryption_Trustee</a><em>&nbsp;d</em>, struct  <a class="reference internal" href="messages.html#c.decryption_fragments_request" title="decryption_fragments_request">decryption_fragments_request</a><em>&nbsp;req</em><span class="sig-paren">)</span><a class="headerlink" href="#c.Decryption_Trustee_compute_fragments" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decrypt this trustee’s fragment of another trustee’s share of the tally. </p>
+</dd></dl>
+
+<dl class="struct">
+<dt id="c.Decryption_Trustee_compute_fragments_r">
+<span class="target" id="struct_decryption___trustee__compute__fragments__r"></span><em class="property">struct </em><code class="descname">Decryption_Trustee_compute_fragments_r</code><a class="headerlink" href="#c.Decryption_Trustee_compute_fragments_r" title="Permalink to this definition">¶</a></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="variable">
+<dt id="c.Decryption_Trustee_compute_fragments_r::status">
+<span class="target" id="struct_decryption___trustee__compute__fragments__r_1a214267f2460a82847f4ac657633ae688"></span><a class="reference internal" href="#c.Decryption_Trustee_status" title="Decryption_Trustee_status">Decryption_Trustee_status</a> <code class="descname">status</code><a class="headerlink" href="#c.Decryption_Trustee_compute_fragments_r::status" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="variable">
+<dt id="c.Decryption_Trustee_compute_fragments_r::fragments">
+<span class="target" id="struct_decryption___trustee__compute__fragments__r_1a150818fa93454e84ca05f1264780aa89"></span>struct <a class="reference internal" href="messages.html#c.decryption_fragments" title="decryption_fragments">decryption_fragments</a> <code class="descname">fragments</code><a class="headerlink" href="#c.Decryption_Trustee_compute_fragments_r::fragments" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="status-codes">
+<h2>Status Codes<a class="headerlink" href="#status-codes" title="Permalink to this headline">¶</a></h2>
+<dl class="enum">
+<dt id="c.Decryption_Trustee_status">
+<span class="target" id="decryption_2trustee_8h_1a144d1587c3efba56240760dca72b05df"></span><em class="property">enum </em><code class="descname">Decryption_Trustee_status</code><a class="headerlink" href="#c.Decryption_Trustee_status" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>Values:</em></p>
+<dl class="enumvalue">
+<dt id="c.DECRYPTION_TRUSTEE_SUCCESS">
+<span class="target" id="decryption_2trustee_8h_1a144d1587c3efba56240760dca72b05dfae37d83bf2218130ad08ffdc8ee4a5ee8"></span><code class="descname">DECRYPTION_TRUSTEE_SUCCESS</code><a class="headerlink" href="#c.DECRYPTION_TRUSTEE_SUCCESS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="enumvalue">
+<dt id="c.DECRYPTION_TRUSTEE_INSUFFICIENT_MEMORY">
+<span class="target" id="decryption_2trustee_8h_1a144d1587c3efba56240760dca72b05dfac38e0d7d6567cedd11dee129dfe4bad1"></span><code class="descname">DECRYPTION_TRUSTEE_INSUFFICIENT_MEMORY</code><a class="headerlink" href="#c.DECRYPTION_TRUSTEE_INSUFFICIENT_MEMORY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="enumvalue">
+<dt id="c.DECRYPTION_TRUSTEE_INVALID_PARAMS">
+<span class="target" id="decryption_2trustee_8h_1a144d1587c3efba56240760dca72b05dfa0e35dc6b0882f12de2263697c6b6e4bc"></span><code class="descname">DECRYPTION_TRUSTEE_INVALID_PARAMS</code><a class="headerlink" href="#c.DECRYPTION_TRUSTEE_INVALID_PARAMS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="enumvalue">
+<dt id="c.DECRYPTION_TRUSTEE_IO_ERROR">
+<span class="target" id="decryption_2trustee_8h_1a144d1587c3efba56240760dca72b05dfa937629b2fe95c26202673eb58dc54fed"></span><code class="descname">DECRYPTION_TRUSTEE_IO_ERROR</code><a class="headerlink" href="#c.DECRYPTION_TRUSTEE_IO_ERROR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="enumvalue">
+<dt id="c.DECRYPTION_TRUSTEE_MALFORMED_INPUT">
+<span class="target" id="decryption_2trustee_8h_1a144d1587c3efba56240760dca72b05dfa26290cc10a3512ea6835c661a15f7a70"></span><code class="descname">DECRYPTION_TRUSTEE_MALFORMED_INPUT</code><a class="headerlink" href="#c.DECRYPTION_TRUSTEE_MALFORMED_INPUT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="enumvalue">
+<dt id="c.DECRYPTION_TRUSTEE_SERIALIZE_ERROR">
+<span class="target" id="decryption_2trustee_8h_1a144d1587c3efba56240760dca72b05dfa99ee44186d39e81d6d3d28b983856d2b"></span><code class="descname">DECRYPTION_TRUSTEE_SERIALIZE_ERROR</code><a class="headerlink" href="#c.DECRYPTION_TRUSTEE_SERIALIZE_ERROR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="enumvalue">
+<dt id="c.DECRYPTION_TRUSTEE_DESERIALIZE_ERROR">
+<span class="target" id="decryption_2trustee_8h_1a144d1587c3efba56240760dca72b05dfa995abf11905424cb380db18825ddb373"></span><code class="descname">DECRYPTION_TRUSTEE_DESERIALIZE_ERROR</code><a class="headerlink" href="#c.DECRYPTION_TRUSTEE_DESERIALIZE_ERROR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+  <div class="t-pagination clearfix">
+    <span>
+      ← <a href="../voting/tracker.html" title="Ballot Tracker">Ballot Tracker</a>
+    </span>
+    <span style="float:right">
+      <a href="coordinator.html" title="Decryption Coordinator">Decryption Coordinator</a> →
+    </span>
+  </div>
+</div><footer class="t-foot">
+    &copy; Copyright 1970, Jake Waksbaum.
+    <br>
+    A <a href="https://typlog.com/">typlog</a> <a href="https://github.com/typlog/sphinx-typlog-theme">sphinx theme</a>,
+    designed by <a href="https://lepture.com/">Hsiaoming Yang</a>.
+</footer>
+  </div>
+  <script>$(function(){$(".t-head_menu").on("click",function(){$("body").addClass("_expand")});$(".t-body").on("click",function(){$("body").removeClass("_expand")});$(".t-sidebar_close").on("click",function(){$("body").removeClass("_expand")});$("a.footnote-reference").on("click",function(e){e.preventDefault();var id=$(this).attr("href");var html=$(id).find("td.label + td").html();var w=Math.max(document.documentElement.clientWidth,window.innerWidth||0);var style="top:"+e.pageY+"px;";if(w>560){style+="width:480px;";if(e.pageX>240&&e.pageX+240<w){style+="left:"+(e.pageX-240)+"px;"}else if(e.pageX<=240){style+="left:20px;"}else{style+="right:20px;"}}showFootnote(html,style)});function showFootnote(html,style){var CONTENT_ID="typlog-footnote-content";var content=document.getElementById(CONTENT_ID);if(!content){content=document.createElement("div");content.id=CONTENT_ID;$(".t-body").append(content)}var MASK_ID="typlog-footnote-mask";var mask=document.getElementById(MASK_ID);if(!mask){mask=document.createElement("div");mask.id=MASK_ID;document.body.appendChild(mask);mask.addEventListener("click",function(){content.className="";mask.className=""})}content.innerHTML=html;content.setAttribute("style",style);content.className="_active";mask.className="_active"}function fetchGitHubRepo(repo){var url="https://api.github.com/repos/"+repo;$.getJSON(url,function(data){var counts=[+new Date,data.stargazers_count,data.forks_count];localStorage.setItem("gh:"+repo,JSON.stringify(counts));updateGitHubStats(counts[1],counts[2])})}function updateGitHubStats(stars,forks){$(".github_stars strong").text(stars);$(".github_forks strong").text(forks)}function initGitHub(url){if(!url){return}var repo=url.replace("https://github.com/","");var cache=localStorage.getItem("gh:"+repo);if(cache){try{var counts=JSON.parse(cache);updateGitHubStats(counts[1],counts[2]);var delta=new Date-counts[0];if(delta<0||delta>9e5){fetchGitHubRepo(repo)}}catch(error){fetchGitHubRepo(repo)}}else{fetchGitHubRepo(repo)}}initGitHub($(".github").attr("href"))});</script>
+</body>
+</html>

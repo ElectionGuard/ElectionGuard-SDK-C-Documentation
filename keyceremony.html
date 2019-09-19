@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Key Ceremony &mdash; ElectionGuard SDK  documentation</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono"><link rel="stylesheet" href="_static/typlog.css?v=0.7.3" type="text/css" />
+  <link rel="stylesheet" href="_static/theme.css?v=0.7.3" type="text/css" />
+      <link rel="index" title="Index" href="genindex.html"/>
+      <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="ElectionGuard SDK  documentation" href="index.html"/>
+      <link rel="next" title="Voting" href="voting.html"/>
+      <link rel="prev" title="ElectionGuard SDK Mock Implementation" href="index.html"/>
+  <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create', '');ga('send', 'pageview');</script>
+  <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ElectionGuard SDK">
+  <meta property="og:title" content="Key Ceremony">
+    <meta property="og:description" content="Building E2E verifiable elections.">
+  <meta name="twitter:card" content="summary">
+</head>
+<body role="document" data-page="keyceremony">
+  <header class="t-head">
+    <div class="t-head_menu"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M64 384h384v-42.666H64V384zm0-106.666h384v-42.667H64v42.667zM64 128v42.665h384V128H64z"/></svg></div>
+    <a class="t-head_logo" href="index.html">ElectionGuard SDK
+    </a>
+  </header>
+  <aside class="t-sidebar">
+    <div class="t-sidebar_close">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M405 136.798L375.202 107 256 226.202 136.798 107 107 136.798 226.202 256 107 375.202 136.798 405 256 285.798 375.202 405 405 375.202 285.798 256z"/></svg>
+    </div>
+    <div class="inner">
+<a class="logo" href="index.html">
+    ElectionGuard SDK
+</a><div class="logo_desc">Building E2E verifiable elections.</div>
+<div class="github_wrap">
+  <a class="github" href="https://github.com/microsoft/ElectionGuard-SDK" target="_blank">
+    <span class="github_icon"></span>
+    <span class="github_stars">
+      <strong>-</strong>stars
+    </span>
+    <span class="github_forks">
+      <strong>-</strong>forks
+    </span>
+  </a>
+</div><div class="globaltoc">
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Key Ceremony</a></li>
+<li class="toctree-l1"><a class="reference internal" href="voting.html">Voting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="decryption.html">Decryption</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Example Clients</a></li>
+</ul>
+
+</div>
+<div id="searchbox">
+  <form class="search" action="search.html" method="get">
+    <div class="input-group">
+      <input type="text" name="q" placeholder="Search" />
+      <button type="submit">Go</button>
+    </div>
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+    </div>
+  </aside>
+  <div class="t-content">
+    <div class="t-body yue">
+  <div class="section" id="key-ceremony">
+<h1>Key Ceremony<a class="headerlink" href="#key-ceremony" title="Permalink to this headline">¶</a></h1>
+<p>The key ceremony is carried out between <span class="math notranslate nohighlight">\(n\)</span> <a class="reference internal" href="api/keyceremony/trustee.html#c.KeyCeremony_Trustee" title="KeyCeremony_Trustee"><code class="xref c c-type docutils literal notranslate"><span class="pre">trustee</span></code></a>s and a single <a class="reference internal" href="api/keyceremony/coordinator.html#c.KeyCeremony_Coordinator" title="KeyCeremony_Coordinator"><code class="xref c c-type docutils literal notranslate"><span class="pre">coordinator</span></code></a>. Its purpose is to ensure that the
+coordinator possesses an joint public key, and that each trustee
+possesses: - a private key - all the trustees’ public keys - a set of
+key shares that allow the trustee to, as a part of a group of at least
+<span class="math notranslate nohighlight">\(k\)</span> trustees, to decrypt a missing trustee’s share of a message
+encrypted with the aggregate public key.</p>
+<div class="section" id="key-generation">
+<h2>Key Generation<a class="headerlink" href="#key-generation" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Each trustee generates a key pair, <a class="footnote-reference" href="#id5" id="id1">[1]</a> producing a
+<a class="reference internal" href="api/keyceremony/messages.html#c.key_generated_message" title="key_generated_message"><code class="xref c c-type docutils literal notranslate"><span class="pre">key-generated</span> <span class="pre">message</span></code></a>.</li>
+<li>These <span class="math notranslate nohighlight">\(n\)</span> <a class="reference internal" href="api/keyceremony/messages.html#c.key_generated_message" title="key_generated_message"><code class="xref c c-type docutils literal notranslate"><span class="pre">key-generated</span> <span class="pre">message</span></code></a>s are passed to the
+coordinator. <a class="footnote-reference" href="#id6" id="id2">[2]</a></li>
+<li>The coordinator produces an <a class="reference internal" href="api/keyceremony/messages.html#c.all_keys_received_message" title="all_keys_received_message"><code class="xref c c-type docutils literal notranslate"><span class="pre">all-keys-received</span> <span class="pre">message</span></code></a>, <a class="footnote-reference" href="#id7" id="id3">[3]</a>
+which must be passed back to each trustee. <a class="footnote-reference" href="#id8" id="id4">[4]</a></li>
+</ol>
+<table class="docutils footnote" frame="void" id="id5" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference internal" href="api/keyceremony/trustee.html#c.KeyCeremony_Trustee_generate_key" title="KeyCeremony_Trustee_generate_key"><code class="xref c c-func docutils literal notranslate"><span class="pre">KeyCeremony_Trustee_generate_key()</span></code></a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id6" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference internal" href="api/keyceremony/coordinator.html#c.KeyCeremony_Coordinator_receive_key_generated" title="KeyCeremony_Coordinator_receive_key_generated"><code class="xref c c-func docutils literal notranslate"><span class="pre">KeyCeremony_Coordinator_receive_key_generated()</span></code></a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id7" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td><a class="reference internal" href="api/keyceremony/coordinator.html#c.KeyCeremony_Coordinator_all_keys_received" title="KeyCeremony_Coordinator_all_keys_received"><code class="xref c c-func docutils literal notranslate"><span class="pre">KeyCeremony_Coordinator_all_keys_received()</span></code></a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id8" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4">[4]</a></td><td><a class="reference internal" href="api/keyceremony/trustee.html#c.KeyCeremony_Trustee_generate_shares" title="KeyCeremony_Trustee_generate_shares"><code class="xref c c-func docutils literal notranslate"><span class="pre">KeyCeremony_Trustee_generate_shares()</span></code></a></td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="share-generation">
+<h2>Share Generation<a class="headerlink" href="#share-generation" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Each trustee, having received an <a class="reference internal" href="api/keyceremony/messages.html#c.all_keys_received_message" title="all_keys_received_message"><code class="xref c c-type docutils literal notranslate"><span class="pre">all-keys-received</span> <span class="pre">message</span></code></a>, computes a key share for every
+trustee, and encrypts each key share with the corresponding
+trustee’s public key to produce a <a class="reference internal" href="api/keyceremony/messages.html#c.shares_generated_message" title="shares_generated_message"><code class="xref c c-type docutils literal notranslate"><span class="pre">shares-generated</span> <span class="pre">message</span></code></a> <a class="footnote-reference" href="#id13" id="id9">[5]</a>.</li>
+<li>These <span class="math notranslate nohighlight">\(n\)</span> <a class="reference internal" href="api/keyceremony/messages.html#c.shares_generated_message" title="shares_generated_message"><code class="xref c c-type docutils literal notranslate"><span class="pre">shares-generated</span> <span class="pre">message</span></code></a>s are passed to the coordinator <a class="footnote-reference" href="#id14" id="id10">[6]</a>.</li>
+<li>The coordinator produces a <a class="reference internal" href="api/keyceremony/messages.html#c.all_shares_received_message" title="all_shares_received_message"><code class="xref c c-type docutils literal notranslate"><span class="pre">all-shares-received</span> <span class="pre">message</span></code></a>, <a class="footnote-reference" href="#id15" id="id11">[7]</a> which must be passed back to
+each trustee. <a class="footnote-reference" href="#id16" id="id12">[8]</a></li>
+</ol>
+<table class="docutils footnote" frame="void" id="id13" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id9">[5]</a></td><td><a class="reference internal" href="api/keyceremony/trustee.html#c.KeyCeremony_Trustee_generate_shares" title="KeyCeremony_Trustee_generate_shares"><code class="xref c c-func docutils literal notranslate"><span class="pre">KeyCeremony_Trustee_generate_shares()</span></code></a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id14" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id10">[6]</a></td><td><a class="reference internal" href="api/keyceremony/coordinator.html#c.KeyCeremony_Coordinator_receive_shares_generated" title="KeyCeremony_Coordinator_receive_shares_generated"><code class="xref c c-func docutils literal notranslate"><span class="pre">KeyCeremony_Coordinator_receive_shares_generated()</span></code></a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id15" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id11">[7]</a></td><td><a class="reference internal" href="api/keyceremony/coordinator.html#c.KeyCeremony_Coordinator_all_shares_received" title="KeyCeremony_Coordinator_all_shares_received"><code class="xref c c-func docutils literal notranslate"><span class="pre">KeyCeremony_Coordinator_all_shares_received()</span></code></a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id16" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id12">[8]</a></td><td><a class="reference internal" href="api/keyceremony/trustee.html#c.KeyCeremony_Trustee_verify_shares" title="KeyCeremony_Trustee_verify_shares"><code class="xref c c-func docutils literal notranslate"><span class="pre">KeyCeremony_Trustee_verify_shares()</span></code></a></td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="verification">
+<h2>Verification<a class="headerlink" href="#verification" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Each trustee, having received an <a class="reference internal" href="api/keyceremony/messages.html#c.all_shares_received_message" title="all_shares_received_message"><code class="xref c c-type docutils literal notranslate"><span class="pre">all-shares-received</span> <span class="pre">message</span></code></a>, decrypts its shares of the other
+trustees keys and verifies that they match the commitments in their
+public keys, producing a <a class="reference internal" href="api/keyceremony/messages.html#c.shares_verified_message" title="shares_verified_message"><code class="xref c c-type docutils literal notranslate"><span class="pre">shares-verified</span> <span class="pre">message</span></code></a>. <a class="footnote-reference" href="#id20" id="id17">[9]</a></li>
+<li>These <span class="math notranslate nohighlight">\(n\)</span> <a class="reference internal" href="api/keyceremony/messages.html#c.shares_verified_message" title="shares_verified_message"><code class="xref c c-type docutils literal notranslate"><span class="pre">shares-verified</span> <span class="pre">message</span></code></a>s are passed to the coordinator. <a class="footnote-reference" href="#id21" id="id18">[10]</a></li>
+<li>The coordinator produces a <a class="reference internal" href="api/crypto.html#c.joint_public_key" title="joint_public_key"><code class="xref c c-type docutils literal notranslate"><span class="pre">joint</span> <span class="pre">public</span> <span class="pre">key</span></code></a>. <a class="footnote-reference" href="#id22" id="id19">[11]</a></li>
+</ol>
+<table class="docutils footnote" frame="void" id="id20" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id17">[9]</a></td><td><a class="reference internal" href="api/keyceremony/trustee.html#c.KeyCeremony_Trustee_verify_shares" title="KeyCeremony_Trustee_verify_shares"><code class="xref c c-func docutils literal notranslate"><span class="pre">KeyCeremony_Trustee_verify_shares()</span></code></a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id21" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id18">[10]</a></td><td><a class="reference internal" href="api/keyceremony/coordinator.html#c.KeyCeremony_Coordinator_receive_shares_verified" title="KeyCeremony_Coordinator_receive_shares_verified"><code class="xref c c-func docutils literal notranslate"><span class="pre">KeyCeremony_Coordinator_receive_shares_verified()</span></code></a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id22" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id19">[11]</a></td><td><a class="reference internal" href="api/keyceremony/coordinator.html#c.KeyCeremony_Coordinator_publish_joint_key" title="KeyCeremony_Coordinator_publish_joint_key"><code class="xref c c-func docutils literal notranslate"><span class="pre">KeyCeremony_Coordinator_publish_joint_key()</span></code></a></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+  <div class="t-pagination clearfix">
+    <span>
+      ← <a href="index.html" title="ElectionGuard SDK Mock Implementation">ElectionGuard SDK Mock...</a>
+    </span>
+    <span style="float:right">
+      <a href="voting.html" title="Voting">Voting</a> →
+    </span>
+  </div>
+</div><footer class="t-foot">
+    &copy; Copyright 1970, Jake Waksbaum.
+    <br>
+    A <a href="https://typlog.com/">typlog</a> <a href="https://github.com/typlog/sphinx-typlog-theme">sphinx theme</a>,
+    designed by <a href="https://lepture.com/">Hsiaoming Yang</a>.
+</footer>
+  </div>
+  <script>$(function(){$(".t-head_menu").on("click",function(){$("body").addClass("_expand")});$(".t-body").on("click",function(){$("body").removeClass("_expand")});$(".t-sidebar_close").on("click",function(){$("body").removeClass("_expand")});$("a.footnote-reference").on("click",function(e){e.preventDefault();var id=$(this).attr("href");var html=$(id).find("td.label + td").html();var w=Math.max(document.documentElement.clientWidth,window.innerWidth||0);var style="top:"+e.pageY+"px;";if(w>560){style+="width:480px;";if(e.pageX>240&&e.pageX+240<w){style+="left:"+(e.pageX-240)+"px;"}else if(e.pageX<=240){style+="left:20px;"}else{style+="right:20px;"}}showFootnote(html,style)});function showFootnote(html,style){var CONTENT_ID="typlog-footnote-content";var content=document.getElementById(CONTENT_ID);if(!content){content=document.createElement("div");content.id=CONTENT_ID;$(".t-body").append(content)}var MASK_ID="typlog-footnote-mask";var mask=document.getElementById(MASK_ID);if(!mask){mask=document.createElement("div");mask.id=MASK_ID;document.body.appendChild(mask);mask.addEventListener("click",function(){content.className="";mask.className=""})}content.innerHTML=html;content.setAttribute("style",style);content.className="_active";mask.className="_active"}function fetchGitHubRepo(repo){var url="https://api.github.com/repos/"+repo;$.getJSON(url,function(data){var counts=[+new Date,data.stargazers_count,data.forks_count];localStorage.setItem("gh:"+repo,JSON.stringify(counts));updateGitHubStats(counts[1],counts[2])})}function updateGitHubStats(stars,forks){$(".github_stars strong").text(stars);$(".github_forks strong").text(forks)}function initGitHub(url){if(!url){return}var repo=url.replace("https://github.com/","");var cache=localStorage.getItem("gh:"+repo);if(cache){try{var counts=JSON.parse(cache);updateGitHubStats(counts[1],counts[2]);var delta=new Date-counts[0];if(delta<0||delta>9e5){fetchGitHubRepo(repo)}}catch(error){fetchGitHubRepo(repo)}}else{fetchGitHubRepo(repo)}}initGitHub($(".github").attr("href"))});</script>
+</body>
+</html>

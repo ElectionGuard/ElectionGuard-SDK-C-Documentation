@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Key Ceremony Coordinator &mdash; ElectionGuard SDK  documentation</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono"><link rel="stylesheet" href="../../_static/typlog.css?v=0.7.3" type="text/css" />
+  <link rel="stylesheet" href="../../_static/theme.css?v=0.7.3" type="text/css" />
+      <link rel="index" title="Index" href="../../genindex.html"/>
+      <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="ElectionGuard SDK  documentation" href="../../index.html"/>
+      <link rel="up" title="API Reference" href="../index.html"/>
+      <link rel="next" title="Key Ceremony Messages" href="messages.html"/>
+      <link rel="prev" title="Key Ceremony Trustee" href="trustee.html"/>
+  <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create', '');ga('send', 'pageview');</script>
+  <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ElectionGuard SDK">
+  <meta property="og:title" content="Key Ceremony Coordinator">
+    <meta property="og:description" content="Building E2E verifiable elections.">
+  <meta name="twitter:card" content="summary">
+</head>
+<body role="document" data-page="api/keyceremony/coordinator">
+  <header class="t-head">
+    <div class="t-head_menu"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M64 384h384v-42.666H64V384zm0-106.666h384v-42.667H64v42.667zM64 128v42.665h384V128H64z"/></svg></div>
+    <a class="t-head_logo" href="../../index.html">ElectionGuard SDK
+    </a>
+  </header>
+  <aside class="t-sidebar">
+    <div class="t-sidebar_close">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M405 136.798L375.202 107 256 226.202 136.798 107 107 136.798 226.202 256 107 375.202 136.798 405 256 285.798 375.202 405 405 375.202 285.798 256z"/></svg>
+    </div>
+    <div class="inner">
+<a class="logo" href="../../index.html">
+    ElectionGuard SDK
+</a><div class="logo_desc">Building E2E verifiable elections.</div>
+<div class="github_wrap">
+  <a class="github" href="https://github.com/microsoft/ElectionGuard-SDK" target="_blank">
+    <span class="github_icon"></span>
+    <span class="github_stars">
+      <strong>-</strong>stars
+    </span>
+    <span class="github_forks">
+      <strong>-</strong>forks
+    </span>
+  </a>
+</div><div class="globaltoc">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../keyceremony.html">Key Ceremony</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../voting.html">Voting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../decryption.html">Decryption</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="trustee.html">Key Ceremony Trustee</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Key Ceremony Coordinator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="messages.html">Key Ceremony Messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../voting/encrypter.html">Voting Encrypter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../voting/coordinator.html">Voting Coordinator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../voting/messages.html">Voting Messsages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../voting/tracker.html">Ballot Tracker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../decryption/trustee.html">Decryption Trustee</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../decryption/coordinator.html">Decryption Coordinator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../decryption/messages.html">Decryption Messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../trustee_state.html">Trustee State</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../crypto.html">Crypto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../max_values.html">Maximum Values</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">Example Clients</a></li>
+</ul>
+
+</div>
+<div id="searchbox">
+  <form class="search" action="../../search.html" method="get">
+    <div class="input-group">
+      <input type="text" name="q" placeholder="Search" />
+      <button type="submit">Go</button>
+    </div>
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+    </div>
+  </aside>
+  <div class="t-content">
+    <div class="t-body yue">
+  <div class="section" id="key-ceremony-coordinator">
+<h1>Key Ceremony Coordinator<a class="headerlink" href="#key-ceremony-coordinator" title="Permalink to this headline">¶</a></h1>
+<dl class="typedef">
+<dt id="c.KeyCeremony_Coordinator">
+<span class="target" id="keyceremony_2coordinator_8h_1ac765cc5bfb6d6985c35d3bd82177bb32"></span><em class="property">typedef </em>struct KeyCeremony_Coordinator_s* <code class="descname">KeyCeremony_Coordinator</code><a class="headerlink" href="#c.KeyCeremony_Coordinator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Responsible for coordinating communication between the trustees during the key ceremony. </p>
+</dd></dl>
+
+<div class="section" id="initialization-and-freeing">
+<h2>Initialization and Freeing<a class="headerlink" href="#initialization-and-freeing" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="c.KeyCeremony_Coordinator_new">
+<span class="target" id="keyceremony_2coordinator_8h_1a13e658b0d3721b6bc07f27b4709c9473"></span>struct <a class="reference internal" href="#c.KeyCeremony_Coordinator_new_r" title="KeyCeremony_Coordinator_new_r">KeyCeremony_Coordinator_new_r</a> <code class="descname">KeyCeremony_Coordinator_new</code><span class="sig-paren">(</span>uint32_t<em>&nbsp;num_trustees</em>, uint32_t<em>&nbsp;threshold</em><span class="sig-paren">)</span><a class="headerlink" href="#c.KeyCeremony_Coordinator_new" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new coordinator. </p>
+</dd></dl>
+
+<dl class="struct">
+<dt id="c.KeyCeremony_Coordinator_new_r">
+<span class="target" id="struct_key_ceremony___coordinator__new__r"></span><em class="property">struct </em><code class="descname">KeyCeremony_Coordinator_new_r</code><a class="headerlink" href="#c.KeyCeremony_Coordinator_new_r" title="Permalink to this definition">¶</a></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="variable">
+<dt id="c.KeyCeremony_Coordinator_new_r::status">
+<span class="target" id="struct_key_ceremony___coordinator__new__r_1a97a060ccec8d27d145209869377c13b5"></span><a class="reference internal" href="#c.KeyCeremony_Coordinator_status" title="KeyCeremony_Coordinator_status">KeyCeremony_Coordinator_status</a> <code class="descname">status</code><a class="headerlink" href="#c.KeyCeremony_Coordinator_new_r::status" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="variable">
+<dt id="c.KeyCeremony_Coordinator_new_r::coordinator">
+<span class="target" id="struct_key_ceremony___coordinator__new__r_1a075f94809d92f92d615def6118eb6c00"></span><a class="reference internal" href="#c.KeyCeremony_Coordinator" title="KeyCeremony_Coordinator">KeyCeremony_Coordinator</a> <code class="descname">coordinator</code><a class="headerlink" href="#c.KeyCeremony_Coordinator_new_r::coordinator" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.KeyCeremony_Coordinator_free">
+<span class="target" id="keyceremony_2coordinator_8h_1a3f13329a46c70b9fb3962b470bd19020"></span>void <code class="descname">KeyCeremony_Coordinator_free</code><span class="sig-paren">(</span><a class="reference internal" href="#c.KeyCeremony_Coordinator" title="KeyCeremony_Coordinator">KeyCeremony_Coordinator</a><em>&nbsp;c</em><span class="sig-paren">)</span><a class="headerlink" href="#c.KeyCeremony_Coordinator_free" title="Permalink to this definition">¶</a></dt>
+<dd><p>Free a coordinator. </p>
+</dd></dl>
+
+</div>
+<div class="section" id="key-generation">
+<h2>Key Generation<a class="headerlink" href="#key-generation" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="c.KeyCeremony_Coordinator_receive_key_generated">
+<span class="target" id="keyceremony_2coordinator_8h_1a49e319edcb581e33b99c12b50924d5fa"></span>enum <a class="reference internal" href="#c.KeyCeremony_Coordinator_status" title="KeyCeremony_Coordinator_status">KeyCeremony_Coordinator_status</a> <code class="descname">KeyCeremony_Coordinator_receive_key_generated</code><span class="sig-paren">(</span><a class="reference internal" href="#c.KeyCeremony_Coordinator" title="KeyCeremony_Coordinator">KeyCeremony_Coordinator</a><em>&nbsp;c</em>, struct  <a class="reference internal" href="messages.html#c.key_generated_message" title="key_generated_message">key_generated_message</a><em>&nbsp;message</em><span class="sig-paren">)</span><a class="headerlink" href="#c.KeyCeremony_Coordinator_receive_key_generated" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receive a message indicating that a trustee has generated its key-pair, which contains the trustee’s public key. </p>
+<p>Checks the NIZKP of possession of the private key. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.KeyCeremony_Coordinator_all_keys_received">
+<span class="target" id="keyceremony_2coordinator_8h_1aeb54d119c82cba5f3235efe88b4a4fb8"></span>struct <a class="reference internal" href="#c.KeyCeremony_Coordinator_all_keys_received_r" title="KeyCeremony_Coordinator_all_keys_received_r">KeyCeremony_Coordinator_all_keys_received_r</a> <code class="descname">KeyCeremony_Coordinator_all_keys_received</code><span class="sig-paren">(</span><a class="reference internal" href="#c.KeyCeremony_Coordinator" title="KeyCeremony_Coordinator">KeyCeremony_Coordinator</a><em>&nbsp;c</em><span class="sig-paren">)</span><a class="headerlink" href="#c.KeyCeremony_Coordinator_all_keys_received" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assert that exactly one <a class="reference internal" href="messages.html#structkey__generated__message"><span class="std std-ref">key_generated_message</span></a> from each trustee has been received, and generate an all_keys_generated_message containing all of the public keys. </p>
+</dd></dl>
+
+<dl class="struct">
+<dt id="c.KeyCeremony_Coordinator_all_keys_received_r">
+<span class="target" id="struct_key_ceremony___coordinator__all__keys__received__r"></span><em class="property">struct </em><code class="descname">KeyCeremony_Coordinator_all_keys_received_r</code><a class="headerlink" href="#c.KeyCeremony_Coordinator_all_keys_received_r" title="Permalink to this definition">¶</a></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="variable">
+<dt id="c.KeyCeremony_Coordinator_all_keys_received_r::status">
+<span class="target" id="struct_key_ceremony___coordinator__all__keys__received__r_1a441c297ecfbc120d01df79be905e33c9"></span><a class="reference internal" href="#c.KeyCeremony_Coordinator_status" title="KeyCeremony_Coordinator_status">KeyCeremony_Coordinator_status</a> <code class="descname">status</code><a class="headerlink" href="#c.KeyCeremony_Coordinator_all_keys_received_r::status" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="variable">
+<dt id="c.KeyCeremony_Coordinator_all_keys_received_r::message">
+<span class="target" id="struct_key_ceremony___coordinator__all__keys__received__r_1a74b7754a69dbd55f1c80d1abdf1b352f"></span>struct <a class="reference internal" href="messages.html#c.all_keys_received_message" title="all_keys_received_message">all_keys_received_message</a> <code class="descname">message</code><a class="headerlink" href="#c.KeyCeremony_Coordinator_all_keys_received_r::message" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="share-generation">
+<h2>Share Generation<a class="headerlink" href="#share-generation" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="c.KeyCeremony_Coordinator_receive_shares_generated">
+<span class="target" id="keyceremony_2coordinator_8h_1a11a4514547342d3cc85c095fa16358eb"></span>enum <a class="reference internal" href="#c.KeyCeremony_Coordinator_status" title="KeyCeremony_Coordinator_status">KeyCeremony_Coordinator_status</a> <code class="descname">KeyCeremony_Coordinator_receive_shares_generated</code><span class="sig-paren">(</span><a class="reference internal" href="#c.KeyCeremony_Coordinator" title="KeyCeremony_Coordinator">KeyCeremony_Coordinator</a><em>&nbsp;c</em>, struct  <a class="reference internal" href="messages.html#c.shares_generated_message" title="shares_generated_message">shares_generated_message</a><em>&nbsp;message</em><span class="sig-paren">)</span><a class="headerlink" href="#c.KeyCeremony_Coordinator_receive_shares_generated" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receive a message containing a trustees encrypted shares of its private key. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.KeyCeremony_Coordinator_all_shares_received">
+<span class="target" id="keyceremony_2coordinator_8h_1ab61bea53a22ad46a2fc1d64677cc5c3b"></span>struct <a class="reference internal" href="#c.KeyCeremony_Coordinator_all_shares_received_r" title="KeyCeremony_Coordinator_all_shares_received_r">KeyCeremony_Coordinator_all_shares_received_r</a> <code class="descname">KeyCeremony_Coordinator_all_shares_received</code><span class="sig-paren">(</span><a class="reference internal" href="#c.KeyCeremony_Coordinator" title="KeyCeremony_Coordinator">KeyCeremony_Coordinator</a><em>&nbsp;c</em><span class="sig-paren">)</span><a class="headerlink" href="#c.KeyCeremony_Coordinator_all_shares_received" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assert that exactly one <a class="reference internal" href="messages.html#structshares__generated__message"><span class="std std-ref">shares_generated_message</span></a> from each trustee has been received, and generate an <a class="reference internal" href="messages.html#structall__shares__received__message"><span class="std std-ref">all_shares_received_message</span></a> containing all of the encrypted key shares. </p>
+</dd></dl>
+
+<dl class="struct">
+<dt id="c.KeyCeremony_Coordinator_all_shares_received_r">
+<span class="target" id="struct_key_ceremony___coordinator__all__shares__received__r"></span><em class="property">struct </em><code class="descname">KeyCeremony_Coordinator_all_shares_received_r</code><a class="headerlink" href="#c.KeyCeremony_Coordinator_all_shares_received_r" title="Permalink to this definition">¶</a></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="variable">
+<dt id="c.KeyCeremony_Coordinator_all_shares_received_r::status">
+<span class="target" id="struct_key_ceremony___coordinator__all__shares__received__r_1a14c6bd9cfb9257df7a2175adda49bfdc"></span><a class="reference internal" href="#c.KeyCeremony_Coordinator_status" title="KeyCeremony_Coordinator_status">KeyCeremony_Coordinator_status</a> <code class="descname">status</code><a class="headerlink" href="#c.KeyCeremony_Coordinator_all_shares_received_r::status" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="variable">
+<dt id="c.KeyCeremony_Coordinator_all_shares_received_r::message">
+<span class="target" id="struct_key_ceremony___coordinator__all__shares__received__r_1aad56fcc34a113ea69c58d738c8010275"></span>struct <a class="reference internal" href="messages.html#c.all_shares_received_message" title="all_shares_received_message">all_shares_received_message</a> <code class="descname">message</code><a class="headerlink" href="#c.KeyCeremony_Coordinator_all_shares_received_r::message" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="verification">
+<h2>Verification<a class="headerlink" href="#verification" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="c.KeyCeremony_Coordinator_receive_shares_verified">
+<span class="target" id="keyceremony_2coordinator_8h_1abd7c02596c31b82149480a3732c60e89"></span>enum <a class="reference internal" href="#c.KeyCeremony_Coordinator_status" title="KeyCeremony_Coordinator_status">KeyCeremony_Coordinator_status</a> <code class="descname">KeyCeremony_Coordinator_receive_shares_verified</code><span class="sig-paren">(</span><a class="reference internal" href="#c.KeyCeremony_Coordinator" title="KeyCeremony_Coordinator">KeyCeremony_Coordinator</a><em>&nbsp;c</em>, struct  <a class="reference internal" href="messages.html#c.shares_verified_message" title="shares_verified_message">shares_verified_message</a><em>&nbsp;message</em><span class="sig-paren">)</span><a class="headerlink" href="#c.KeyCeremony_Coordinator_receive_shares_verified" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receive a message indicating that a trustee has verified that the key shares it has received are consistent with the commitments in the public keys of each trustee. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.KeyCeremony_Coordinator_publish_joint_key">
+<span class="target" id="keyceremony_2coordinator_8h_1aa8e69d103ba6163f104251dac4ec213d"></span>struct <a class="reference internal" href="#c.KeyCeremony_Coordinator_publish_joint_key_r" title="KeyCeremony_Coordinator_publish_joint_key_r">KeyCeremony_Coordinator_publish_joint_key_r</a> <code class="descname">KeyCeremony_Coordinator_publish_joint_key</code><span class="sig-paren">(</span><a class="reference internal" href="#c.KeyCeremony_Coordinator" title="KeyCeremony_Coordinator">KeyCeremony_Coordinator</a><em>&nbsp;c</em><span class="sig-paren">)</span><a class="headerlink" href="#c.KeyCeremony_Coordinator_publish_joint_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assert that exactly one <a class="reference internal" href="messages.html#structshares__verified__message"><span class="std std-ref">shares_verified_message</span></a> from each trustee has been received, and generate the joint public key to be used to encrypt votes in the election. </p>
+</dd></dl>
+
+<dl class="struct">
+<dt id="c.KeyCeremony_Coordinator_publish_joint_key_r">
+<span class="target" id="struct_key_ceremony___coordinator__publish__joint__key__r"></span><em class="property">struct </em><code class="descname">KeyCeremony_Coordinator_publish_joint_key_r</code><a class="headerlink" href="#c.KeyCeremony_Coordinator_publish_joint_key_r" title="Permalink to this definition">¶</a></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="variable">
+<dt id="c.KeyCeremony_Coordinator_publish_joint_key_r::status">
+<span class="target" id="struct_key_ceremony___coordinator__publish__joint__key__r_1a156660c202a5cf7455c468482533dd61"></span><a class="reference internal" href="#c.KeyCeremony_Coordinator_status" title="KeyCeremony_Coordinator_status">KeyCeremony_Coordinator_status</a> <code class="descname">status</code><a class="headerlink" href="#c.KeyCeremony_Coordinator_publish_joint_key_r::status" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="variable">
+<dt id="c.KeyCeremony_Coordinator_publish_joint_key_r::key">
+<span class="target" id="struct_key_ceremony___coordinator__publish__joint__key__r_1ab7b93cd0467ee4d9e4e1dc0b70043a32"></span>struct <a class="reference internal" href="../crypto.html#c.joint_public_key" title="joint_public_key">joint_public_key</a> <code class="descname">key</code><a class="headerlink" href="#c.KeyCeremony_Coordinator_publish_joint_key_r::key" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="status-codes">
+<h2>Status Codes<a class="headerlink" href="#status-codes" title="Permalink to this headline">¶</a></h2>
+<dl class="enum">
+<dt id="c.KeyCeremony_Coordinator_status">
+<span class="target" id="keyceremony_2coordinator_8h_1a26283cb5b82cc9524e5f8eb629fdc013"></span><em class="property">enum </em><code class="descname">KeyCeremony_Coordinator_status</code><a class="headerlink" href="#c.KeyCeremony_Coordinator_status" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>Values:</em></p>
+<dl class="enumvalue">
+<dt id="c.KEYCEREMONY_COORDINATOR_SUCCESS">
+<span class="target" id="keyceremony_2coordinator_8h_1a26283cb5b82cc9524e5f8eb629fdc013ac5140d1e4e16da79a379fc29fa745d34"></span><code class="descname">KEYCEREMONY_COORDINATOR_SUCCESS</code><a class="headerlink" href="#c.KEYCEREMONY_COORDINATOR_SUCCESS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="enumvalue">
+<dt id="c.KEYCEREMONY_COORDINATOR_INSUFFICIENT_MEMORY">
+<span class="target" id="keyceremony_2coordinator_8h_1a26283cb5b82cc9524e5f8eb629fdc013a3a1cc8a43c5e1345f8af88fdd266ba89"></span><code class="descname">KEYCEREMONY_COORDINATOR_INSUFFICIENT_MEMORY</code><a class="headerlink" href="#c.KEYCEREMONY_COORDINATOR_INSUFFICIENT_MEMORY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="enumvalue">
+<dt id="c.KEYCEREMONY_COORDINATOR_INVALID_PARAMS">
+<span class="target" id="keyceremony_2coordinator_8h_1a26283cb5b82cc9524e5f8eb629fdc013a7fb54b43261a74291b024505a3ee8257"></span><code class="descname">KEYCEREMONY_COORDINATOR_INVALID_PARAMS</code><a class="headerlink" href="#c.KEYCEREMONY_COORDINATOR_INVALID_PARAMS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="enumvalue">
+<dt id="c.KEYCEREMONY_COORDINATOR_DUPLICATE_TRUSTEE_INDEX">
+<span class="target" id="keyceremony_2coordinator_8h_1a26283cb5b82cc9524e5f8eb629fdc013a9016d1d5ef18665559053d4396bf808f"></span><code class="descname">KEYCEREMONY_COORDINATOR_DUPLICATE_TRUSTEE_INDEX</code><a class="headerlink" href="#c.KEYCEREMONY_COORDINATOR_DUPLICATE_TRUSTEE_INDEX" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="enumvalue">
+<dt id="c.KEYCEREMONY_COORDINATOR_INVALID_TRUSTEE_INDEX">
+<span class="target" id="keyceremony_2coordinator_8h_1a26283cb5b82cc9524e5f8eb629fdc013a0ba1cc742cc44453b5f987a574a79794"></span><code class="descname">KEYCEREMONY_COORDINATOR_INVALID_TRUSTEE_INDEX</code><a class="headerlink" href="#c.KEYCEREMONY_COORDINATOR_INVALID_TRUSTEE_INDEX" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="enumvalue">
+<dt id="c.KEYCEREMONY_COORDINATOR_MISSING_TRUSTEES">
+<span class="target" id="keyceremony_2coordinator_8h_1a26283cb5b82cc9524e5f8eb629fdc013a781b6daa52ec924ddea6b5777a6843c7"></span><code class="descname">KEYCEREMONY_COORDINATOR_MISSING_TRUSTEES</code><a class="headerlink" href="#c.KEYCEREMONY_COORDINATOR_MISSING_TRUSTEES" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="enumvalue">
+<dt id="c.KEYCEREMONY_COORDINATOR_TRUSTEE_INVALIDATION">
+<span class="target" id="keyceremony_2coordinator_8h_1a26283cb5b82cc9524e5f8eb629fdc013a60c171ad18645737675900cd3f58eca1"></span><code class="descname">KEYCEREMONY_COORDINATOR_TRUSTEE_INVALIDATION</code><a class="headerlink" href="#c.KEYCEREMONY_COORDINATOR_TRUSTEE_INVALIDATION" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="enumvalue">
+<dt id="c.KEYCEREMONY_COORDINATOR_SERIALIZE_ERROR">
+<span class="target" id="keyceremony_2coordinator_8h_1a26283cb5b82cc9524e5f8eb629fdc013a43e3969d2e9297fe04c0c3ce629ab52b"></span><code class="descname">KEYCEREMONY_COORDINATOR_SERIALIZE_ERROR</code><a class="headerlink" href="#c.KEYCEREMONY_COORDINATOR_SERIALIZE_ERROR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="enumvalue">
+<dt id="c.KEYCEREMONY_COORDINATOR_DESERIALIZE_ERROR">
+<span class="target" id="keyceremony_2coordinator_8h_1a26283cb5b82cc9524e5f8eb629fdc013ad085df623895afdeeb68f513b80aa5f7"></span><code class="descname">KEYCEREMONY_COORDINATOR_DESERIALIZE_ERROR</code><a class="headerlink" href="#c.KEYCEREMONY_COORDINATOR_DESERIALIZE_ERROR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+  <div class="t-pagination clearfix">
+    <span>
+      ← <a href="trustee.html" title="Key Ceremony Trustee">Key Ceremony Trustee</a>
+    </span>
+    <span style="float:right">
+      <a href="messages.html" title="Key Ceremony Messages">Key Ceremony Messages</a> →
+    </span>
+  </div>
+</div><footer class="t-foot">
+    &copy; Copyright 1970, Jake Waksbaum.
+    <br>
+    A <a href="https://typlog.com/">typlog</a> <a href="https://github.com/typlog/sphinx-typlog-theme">sphinx theme</a>,
+    designed by <a href="https://lepture.com/">Hsiaoming Yang</a>.
+</footer>
+  </div>
+  <script>$(function(){$(".t-head_menu").on("click",function(){$("body").addClass("_expand")});$(".t-body").on("click",function(){$("body").removeClass("_expand")});$(".t-sidebar_close").on("click",function(){$("body").removeClass("_expand")});$("a.footnote-reference").on("click",function(e){e.preventDefault();var id=$(this).attr("href");var html=$(id).find("td.label + td").html();var w=Math.max(document.documentElement.clientWidth,window.innerWidth||0);var style="top:"+e.pageY+"px;";if(w>560){style+="width:480px;";if(e.pageX>240&&e.pageX+240<w){style+="left:"+(e.pageX-240)+"px;"}else if(e.pageX<=240){style+="left:20px;"}else{style+="right:20px;"}}showFootnote(html,style)});function showFootnote(html,style){var CONTENT_ID="typlog-footnote-content";var content=document.getElementById(CONTENT_ID);if(!content){content=document.createElement("div");content.id=CONTENT_ID;$(".t-body").append(content)}var MASK_ID="typlog-footnote-mask";var mask=document.getElementById(MASK_ID);if(!mask){mask=document.createElement("div");mask.id=MASK_ID;document.body.appendChild(mask);mask.addEventListener("click",function(){content.className="";mask.className=""})}content.innerHTML=html;content.setAttribute("style",style);content.className="_active";mask.className="_active"}function fetchGitHubRepo(repo){var url="https://api.github.com/repos/"+repo;$.getJSON(url,function(data){var counts=[+new Date,data.stargazers_count,data.forks_count];localStorage.setItem("gh:"+repo,JSON.stringify(counts));updateGitHubStats(counts[1],counts[2])})}function updateGitHubStats(stars,forks){$(".github_stars strong").text(stars);$(".github_forks strong").text(forks)}function initGitHub(url){if(!url){return}var repo=url.replace("https://github.com/","");var cache=localStorage.getItem("gh:"+repo);if(cache){try{var counts=JSON.parse(cache);updateGitHubStats(counts[1],counts[2]);var delta=new Date-counts[0];if(delta<0||delta>9e5){fetchGitHubRepo(repo)}}catch(error){fetchGitHubRepo(repo)}}else{fetchGitHubRepo(repo)}}initGitHub($(".github").attr("href"))});</script>
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Reference &mdash; ElectionGuard SDK  documentation</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono"><link rel="stylesheet" href="../_static/typlog.css?v=0.7.3" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme.css?v=0.7.3" type="text/css" />
+      <link rel="index" title="Index" href="../genindex.html"/>
+      <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="ElectionGuard SDK  documentation" href="../index.html"/>
+      <link rel="next" title="Key Ceremony Trustee" href="keyceremony/trustee.html"/>
+      <link rel="prev" title="Decryption" href="../decryption.html"/>
+  <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create', '');ga('send', 'pageview');</script>
+  <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ElectionGuard SDK">
+  <meta property="og:title" content="API Reference">
+    <meta property="og:description" content="Building E2E verifiable elections.">
+  <meta name="twitter:card" content="summary">
+</head>
+<body role="document" data-page="api/index">
+  <header class="t-head">
+    <div class="t-head_menu"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M64 384h384v-42.666H64V384zm0-106.666h384v-42.667H64v42.667zM64 128v42.665h384V128H64z"/></svg></div>
+    <a class="t-head_logo" href="../index.html">ElectionGuard SDK
+    </a>
+  </header>
+  <aside class="t-sidebar">
+    <div class="t-sidebar_close">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M405 136.798L375.202 107 256 226.202 136.798 107 107 136.798 226.202 256 107 375.202 136.798 405 256 285.798 375.202 405 405 375.202 285.798 256z"/></svg>
+    </div>
+    <div class="inner">
+<a class="logo" href="../index.html">
+    ElectionGuard SDK
+</a><div class="logo_desc">Building E2E verifiable elections.</div>
+<div class="github_wrap">
+  <a class="github" href="https://github.com/microsoft/ElectionGuard-SDK" target="_blank">
+    <span class="github_icon"></span>
+    <span class="github_stars">
+      <strong>-</strong>stars
+    </span>
+    <span class="github_forks">
+      <strong>-</strong>forks
+    </span>
+  </a>
+</div><div class="globaltoc">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../keyceremony.html">Key Ceremony</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../voting.html">Voting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../decryption.html">Decryption</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="keyceremony/trustee.html">Key Ceremony Trustee</a></li>
+<li class="toctree-l2"><a class="reference internal" href="keyceremony/coordinator.html">Key Ceremony Coordinator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="keyceremony/messages.html">Key Ceremony Messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="voting/encrypter.html">Voting Encrypter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="voting/coordinator.html">Voting Coordinator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="voting/messages.html">Voting Messsages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="voting/tracker.html">Ballot Tracker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decryption/trustee.html">Decryption Trustee</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decryption/coordinator.html">Decryption Coordinator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decryption/messages.html">Decryption Messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trustee_state.html">Trustee State</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crypto.html">Crypto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="max_values.html">Maximum Values</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Example Clients</a></li>
+</ul>
+
+</div>
+<div id="searchbox">
+  <form class="search" action="../search.html" method="get">
+    <div class="input-group">
+      <input type="text" name="q" placeholder="Search" />
+      <button type="submit">Go</button>
+    </div>
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+    </div>
+  </aside>
+  <div class="t-content">
+    <div class="t-body yue">
+  <div class="section" id="api-reference">
+<span id="include"></span><h1>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this headline">¶</a></h1>
+<p>This API is designed to allow clients to correctly implement an E2E
+Verifiable election. In designing this API, we tried to balance the
+following constraints and goals:</p>
+<ul class="simple">
+<li><em>correct:</em> The API must provide the necessary tools to implement a correct
+E2E verifiable election system.</li>
+<li><em>communication agnostic:</em> The client is responsible for managing
+communications between components. Those components may be a part of
+the same program and communicate via argument-passing, or they may
+be on entirely different servers and communicate over a network.
+This leads to a design in which the entities produce and consume
+messages that drive the election process forward and enforce an
+ordering on operations.</li>
+<li><em>easy to use:</em> API should be easy to use correctly. This means
+reducing the number of functions calls where possible, as
+well as using the types of messages to guide the user towards
+correct usage of the API.</li>
+<li><em>general:</em> We try to make no extra assumptions about the set-up of the election
+other than those required by the ElectionGuard E2E Verifiable specification.</li>
+</ul>
+<p>There are 3 phases of an election:</p>
+<ol class="arabic simple">
+<li><a class="reference internal" href="../keyceremony.html"><span class="doc">Key Ceremony</span></a>: A group of <span class="math notranslate nohighlight">\(n\)</span> trustees jointly
+generate a joint public key such that for a predetermined threshold
+<span class="math notranslate nohighlight">\(k\)</span>, any <span class="math notranslate nohighlight">\(k\)</span> of the trustees can decrypt a message encrypted by the
+public key.</li>
+<li><a class="reference internal" href="../voting.html"><span class="doc">Voting</span></a>: Voters cast their ballots at various
+polling locations. Their ballots are encrypted using the the joint
+public key.</li>
+<li><a class="reference internal" href="../decryption.html"><span class="doc">Decryption</span></a>: A group of at least <span class="math notranslate nohighlight">\(k\)</span> of the
+trustees jointly decrypt the tally of all the ballots and publish
+sufficient information for anyone to verify that the tally and
+decryption was carried out correctly.</li>
+</ol>
+<p>Within the API, these phases are represented by interactions between
+various entities:</p>
+<ol class="arabic simple">
+<li>The key ceremony is carried out by <span class="math notranslate nohighlight">\(n\)</span> <a class="reference internal" href="keyceremony/trustee.html#c.KeyCeremony_Trustee" title="KeyCeremony_Trustee"><code class="xref c c-type docutils literal notranslate"><span class="pre">KeyCeremony_Trustee</span></code></a>
+objects representing the election trustees, and a single
+<a class="reference internal" href="keyceremony/coordinator.html#c.KeyCeremony_Coordinator" title="KeyCeremony_Coordinator"><code class="xref c c-type docutils literal notranslate"><span class="pre">KeyCeremony_Coordinator</span></code></a> object that provides a central
+“location” to which <a class="reference internal" href="keyceremony/trustee.html#c.KeyCeremony_Trustee" title="KeyCeremony_Trustee"><code class="xref c c-type docutils literal notranslate"><span class="pre">KeyCeremony_Trustee</span></code></a>s submit pieces of
+information, and which then broadcasts that information to all the
+<a class="reference internal" href="keyceremony/trustee.html#c.KeyCeremony_Trustee" title="KeyCeremony_Trustee"><code class="xref c c-type docutils literal notranslate"><span class="pre">KeyCeremony_Trustee</span></code></a>s.</li>
+<li>Voting is carried out by groups of many <a class="reference internal" href="voting/encrypter.html#c.Voting_Encrypter" title="Voting_Encrypter"><code class="xref c c-type docutils literal notranslate"><span class="pre">Voting_Encrypter</span></code></a>s
+(probably located within ballot marking devices) connected to a
+single <a class="reference internal" href="voting/coordinator.html#c.Voting_Coordinator" title="Voting_Coordinator"><code class="xref c c-type docutils literal notranslate"><span class="pre">Voting_Coordinator</span></code></a>. Each group represents a single
+polling location. The <a class="reference internal" href="voting/encrypter.html#c.Voting_Encrypter" title="Voting_Encrypter"><code class="xref c c-type docutils literal notranslate"><span class="pre">Voting_Encrypter</span></code></a> is responsible for
+encrypting ballots to produce <a class="reference internal" href="voting/messages.html#c.ballot_tracker" title="ballot_tracker"><code class="xref c c-type docutils literal notranslate"><span class="pre">ballot_tracker</span></code></a>s and
+<a class="reference internal" href="voting/messages.html#c.ballot_identifier" title="ballot_identifier"><code class="xref c c-type docutils literal notranslate"><span class="pre">ballot_identifier</span></code></a>s. The <a class="reference internal" href="voting/coordinator.html#c.Voting_Coordinator" title="Voting_Coordinator"><code class="xref c c-type docutils literal notranslate"><span class="pre">Voting_Coordinator</span></code></a>
+is responsible for keeping track of which ballots have been
+registered, cast, and spoiled.</li>
+<li>Tallying is carried out by a group of at least <span class="math notranslate nohighlight">\(k\)</span>
+<a class="reference internal" href="decryption/trustee.html#c.Decryption_Trustee" title="Decryption_Trustee"><code class="xref c c-type docutils literal notranslate"><span class="pre">Decryption_Trustee</span></code></a> objects representing the election
+trustees, and a single <a class="reference internal" href="decryption/coordinator.html#c.Decryption_Coordinator" title="Decryption_Coordinator"><code class="xref c c-type docutils literal notranslate"><span class="pre">Decryption_Coordinator</span></code></a> object in a
+structure very similar to that of the Key Ceremony.</li>
+</ol>
+<p>We chose to separate the trustees and coordinators into
+<a class="reference internal" href="keyceremony/trustee.html#c.KeyCeremony_Trustee" title="KeyCeremony_Trustee"><code class="xref c c-type docutils literal notranslate"><span class="pre">KeyCeremony_Trustee</span></code></a>s/<a class="reference internal" href="decryption/trustee.html#c.Decryption_Trustee" title="Decryption_Trustee"><code class="xref c c-type docutils literal notranslate"><span class="pre">Decryption_Trustee</span></code></a>s and
+<a class="reference internal" href="keyceremony/coordinator.html#c.KeyCeremony_Coordinator" title="KeyCeremony_Coordinator"><code class="xref c c-type docutils literal notranslate"><span class="pre">KeyCeremony_Coordinator</span></code></a>s/<a class="reference internal" href="decryption/coordinator.html#c.Decryption_Coordinator" title="Decryption_Coordinator"><code class="xref c c-type docutils literal notranslate"><span class="pre">Decryption_Coordinator</span></code></a>s respectively. This is because conceptually a trustee has two
+distinct tasks, key generation and decryption, that are linked by a
+small kernel of persisted information such as the trustee’s private
+key and key shares. Decryption will probably happen at least a day
+after the key ceremony, so it is important that the information
+necessary for decryption can be stored for a long period of time.
+Making the distinction between <a class="reference internal" href="keyceremony/trustee.html#c.KeyCeremony_Trustee" title="KeyCeremony_Trustee"><code class="xref c c-type docutils literal notranslate"><span class="pre">KeyCeremony_Trustee</span></code></a>s and
+<a class="reference internal" href="decryption/trustee.html#c.Decryption_Trustee" title="Decryption_Trustee"><code class="xref c c-type docutils literal notranslate"><span class="pre">Decryption_Trustee</span></code></a>s and making the persisted
+<a class="reference internal" href="trustee_state.html#c.trustee_state" title="trustee_state"><code class="xref c c-type docutils literal notranslate"><span class="pre">trustee_state</span></code></a> explicit and serializable makes the APIs of each
+component simpler and makes it easier to persist the
+<a class="reference internal" href="trustee_state.html#c.trustee_state" title="trustee_state"><code class="xref c c-type docutils literal notranslate"><span class="pre">trustee_state</span></code></a> over the course of the election.</p>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+
+  <div class="t-pagination clearfix">
+    <span>
+      ← <a href="../decryption.html" title="Decryption">Decryption</a>
+    </span>
+    <span style="float:right">
+      <a href="keyceremony/trustee.html" title="Key Ceremony Trustee">Key Ceremony Trustee</a> →
+    </span>
+  </div>
+</div><footer class="t-foot">
+    &copy; Copyright 1970, Jake Waksbaum.
+    <br>
+    A <a href="https://typlog.com/">typlog</a> <a href="https://github.com/typlog/sphinx-typlog-theme">sphinx theme</a>,
+    designed by <a href="https://lepture.com/">Hsiaoming Yang</a>.
+</footer>
+  </div>
+  <script>$(function(){$(".t-head_menu").on("click",function(){$("body").addClass("_expand")});$(".t-body").on("click",function(){$("body").removeClass("_expand")});$(".t-sidebar_close").on("click",function(){$("body").removeClass("_expand")});$("a.footnote-reference").on("click",function(e){e.preventDefault();var id=$(this).attr("href");var html=$(id).find("td.label + td").html();var w=Math.max(document.documentElement.clientWidth,window.innerWidth||0);var style="top:"+e.pageY+"px;";if(w>560){style+="width:480px;";if(e.pageX>240&&e.pageX+240<w){style+="left:"+(e.pageX-240)+"px;"}else if(e.pageX<=240){style+="left:20px;"}else{style+="right:20px;"}}showFootnote(html,style)});function showFootnote(html,style){var CONTENT_ID="typlog-footnote-content";var content=document.getElementById(CONTENT_ID);if(!content){content=document.createElement("div");content.id=CONTENT_ID;$(".t-body").append(content)}var MASK_ID="typlog-footnote-mask";var mask=document.getElementById(MASK_ID);if(!mask){mask=document.createElement("div");mask.id=MASK_ID;document.body.appendChild(mask);mask.addEventListener("click",function(){content.className="";mask.className=""})}content.innerHTML=html;content.setAttribute("style",style);content.className="_active";mask.className="_active"}function fetchGitHubRepo(repo){var url="https://api.github.com/repos/"+repo;$.getJSON(url,function(data){var counts=[+new Date,data.stargazers_count,data.forks_count];localStorage.setItem("gh:"+repo,JSON.stringify(counts));updateGitHubStats(counts[1],counts[2])})}function updateGitHubStats(stars,forks){$(".github_stars strong").text(stars);$(".github_forks strong").text(forks)}function initGitHub(url){if(!url){return}var repo=url.replace("https://github.com/","");var cache=localStorage.getItem("gh:"+repo);if(cache){try{var counts=JSON.parse(cache);updateGitHubStats(counts[1],counts[2]);var delta=new Date-counts[0];if(delta<0||delta>9e5){fetchGitHubRepo(repo)}}catch(error){fetchGitHubRepo(repo)}}else{fetchGitHubRepo(repo)}}initGitHub($(".github").attr("href"))});</script>
+</body>
+</html>

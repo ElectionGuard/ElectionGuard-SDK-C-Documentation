@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voting Encrypter &mdash; ElectionGuard SDK  documentation</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono"><link rel="stylesheet" href="../../_static/typlog.css?v=0.7.3" type="text/css" />
+  <link rel="stylesheet" href="../../_static/theme.css?v=0.7.3" type="text/css" />
+      <link rel="index" title="Index" href="../../genindex.html"/>
+      <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="ElectionGuard SDK  documentation" href="../../index.html"/>
+      <link rel="up" title="API Reference" href="../index.html"/>
+      <link rel="next" title="Voting Coordinator" href="coordinator.html"/>
+      <link rel="prev" title="Key Ceremony Messages" href="../keyceremony/messages.html"/>
+  <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create', '');ga('send', 'pageview');</script>
+  <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ElectionGuard SDK">
+  <meta property="og:title" content="Voting Encrypter">
+    <meta property="og:description" content="Building E2E verifiable elections.">
+  <meta name="twitter:card" content="summary">
+</head>
+<body role="document" data-page="api/voting/encrypter">
+  <header class="t-head">
+    <div class="t-head_menu"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M64 384h384v-42.666H64V384zm0-106.666h384v-42.667H64v42.667zM64 128v42.665h384V128H64z"/></svg></div>
+    <a class="t-head_logo" href="../../index.html">ElectionGuard SDK
+    </a>
+  </header>
+  <aside class="t-sidebar">
+    <div class="t-sidebar_close">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M405 136.798L375.202 107 256 226.202 136.798 107 107 136.798 226.202 256 107 375.202 136.798 405 256 285.798 375.202 405 405 375.202 285.798 256z"/></svg>
+    </div>
+    <div class="inner">
+<a class="logo" href="../../index.html">
+    ElectionGuard SDK
+</a><div class="logo_desc">Building E2E verifiable elections.</div>
+<div class="github_wrap">
+  <a class="github" href="https://github.com/microsoft/ElectionGuard-SDK" target="_blank">
+    <span class="github_icon"></span>
+    <span class="github_stars">
+      <strong>-</strong>stars
+    </span>
+    <span class="github_forks">
+      <strong>-</strong>forks
+    </span>
+  </a>
+</div><div class="globaltoc">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../keyceremony.html">Key Ceremony</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../voting.html">Voting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../decryption.html">Decryption</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../keyceremony/trustee.html">Key Ceremony Trustee</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../keyceremony/coordinator.html">Key Ceremony Coordinator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../keyceremony/messages.html">Key Ceremony Messages</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Voting Encrypter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coordinator.html">Voting Coordinator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="messages.html">Voting Messsages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tracker.html">Ballot Tracker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../decryption/trustee.html">Decryption Trustee</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../decryption/coordinator.html">Decryption Coordinator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../decryption/messages.html">Decryption Messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../trustee_state.html">Trustee State</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../crypto.html">Crypto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../max_values.html">Maximum Values</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">Example Clients</a></li>
+</ul>
+
+</div>
+<div id="searchbox">
+  <form class="search" action="../../search.html" method="get">
+    <div class="input-group">
+      <input type="text" name="q" placeholder="Search" />
+      <button type="submit">Go</button>
+    </div>
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+    </div>
+  </aside>
+  <div class="t-content">
+    <div class="t-body yue">
+  <div class="section" id="voting-encrypter">
+<h1>Voting Encrypter<a class="headerlink" href="#voting-encrypter" title="Permalink to this headline">¶</a></h1>
+<dl class="typedef">
+<dt id="c.Voting_Encrypter">
+<span class="target" id="encrypter_8h_1a9cc3bfeee62bea1521b94450ace97aab"></span><em class="property">typedef </em>struct Voting_Encrypter_s* <code class="descname">Voting_Encrypter</code><a class="headerlink" href="#c.Voting_Encrypter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="struct">
+<dt id="c.uid">
+<span class="target" id="structuid"></span><em class="property">struct </em><code class="descname">uid</code><a class="headerlink" href="#c.uid" title="Permalink to this definition">¶</a></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="variable">
+<dt id="c.uid::len">
+<span class="target" id="structuid_1aaf85ca3acb39e376cc5fe3e781b77af3"></span>uint64_t <code class="descname">len</code><a class="headerlink" href="#c.uid::len" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="variable">
+<dt id="c.uid::bytes">
+<span class="target" id="structuid_1adf7e3a106d89a9fc3b529d63877ed316"></span>uint8_t const* <code class="descname">bytes</code><a class="headerlink" href="#c.uid::bytes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.Voting_Encrypter_new">
+<span class="target" id="encrypter_8h_1a3d84667788b3f3bb1630270721c4d83e"></span>struct <a class="reference internal" href="#c.Voting_Encrypter_new_r" title="Voting_Encrypter_new_r">Voting_Encrypter_new_r</a> <code class="descname">Voting_Encrypter_new</code><span class="sig-paren">(</span>struct  <a class="reference internal" href="#c.uid" title="uid">uid</a><em>&nbsp;uid</em>, struct  <a class="reference internal" href="../crypto.html#c.joint_public_key" title="joint_public_key">joint_public_key</a><em>&nbsp;joint_key</em>, uint32_t<em>&nbsp;num_selections</em><span class="sig-paren">)</span><a class="headerlink" href="#c.Voting_Encrypter_new" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new encrypter. </p>
+<p>Does not transfer ownership of the public key, but creates and allocates a new copy. </p>
+</dd></dl>
+
+<dl class="struct">
+<dt id="c.Voting_Encrypter_new_r">
+<span class="target" id="struct_voting___encrypter__new__r"></span><em class="property">struct </em><code class="descname">Voting_Encrypter_new_r</code><a class="headerlink" href="#c.Voting_Encrypter_new_r" title="Permalink to this definition">¶</a></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="variable">
+<dt id="c.Voting_Encrypter_new_r::status">
+<span class="target" id="struct_voting___encrypter__new__r_1ad31929ebb50f1b301b7a32ecf5a13e3e"></span><a class="reference internal" href="#c.Voting_Encrypter_status" title="Voting_Encrypter_status">Voting_Encrypter_status</a> <code class="descname">status</code><a class="headerlink" href="#c.Voting_Encrypter_new_r::status" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="variable">
+<dt id="c.Voting_Encrypter_new_r::encrypter">
+<span class="target" id="struct_voting___encrypter__new__r_1a083ea3fb5596ee7145a500ebc0cc375e"></span><a class="reference internal" href="#c.Voting_Encrypter" title="Voting_Encrypter">Voting_Encrypter</a> <code class="descname">encrypter</code><a class="headerlink" href="#c.Voting_Encrypter_new_r::encrypter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.Voting_Encrypter_free">
+<span class="target" id="encrypter_8h_1a5927e8c2ebe87812256b19148c1c187b"></span>void <code class="descname">Voting_Encrypter_free</code><span class="sig-paren">(</span><a class="reference internal" href="#c.Voting_Encrypter" title="Voting_Encrypter">Voting_Encrypter</a><em>&nbsp;encrypter</em><span class="sig-paren">)</span><a class="headerlink" href="#c.Voting_Encrypter_free" title="Permalink to this definition">¶</a></dt>
+<dd><p>Free a ballot marking device. </p>
+</dd></dl>
+
+<div class="section" id="ballot-encryption">
+<h2>Ballot Encryption<a class="headerlink" href="#ballot-encryption" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="c.Voting_Encrypter_encrypt_ballot">
+<span class="target" id="encrypter_8h_1a5633353ccc1f4c2a5bbd2b4414b79a70"></span>struct <a class="reference internal" href="#c.Voting_Encrypter_encrypt_ballot_r" title="Voting_Encrypter_encrypt_ballot_r">Voting_Encrypter_encrypt_ballot_r</a> <code class="descname">Voting_Encrypter_encrypt_ballot</code><span class="sig-paren">(</span><a class="reference internal" href="#c.Voting_Encrypter" title="Voting_Encrypter">Voting_Encrypter</a><em>&nbsp;encrypter</em>, bool const *<em>&nbsp;selections</em><span class="sig-paren">)</span><a class="headerlink" href="#c.Voting_Encrypter_encrypt_ballot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Encrypt an unencrypted ballot, producing an encrypted ballot, a ballot tracker, and a ballot identifier. </p>
+<p>The caller must free both when done, ie. they own them. </p>
+</dd></dl>
+
+<dl class="struct">
+<dt id="c.Voting_Encrypter_encrypt_ballot_r">
+<span class="target" id="struct_voting___encrypter__encrypt__ballot__r"></span><em class="property">struct </em><code class="descname">Voting_Encrypter_encrypt_ballot_r</code><a class="headerlink" href="#c.Voting_Encrypter_encrypt_ballot_r" title="Permalink to this definition">¶</a></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="variable">
+<dt id="c.Voting_Encrypter_encrypt_ballot_r::status">
+<span class="target" id="struct_voting___encrypter__encrypt__ballot__r_1a1b99e8878c2c9eb7eb0d8adb60adf359"></span><a class="reference internal" href="#c.Voting_Encrypter_status" title="Voting_Encrypter_status">Voting_Encrypter_status</a> <code class="descname">status</code><a class="headerlink" href="#c.Voting_Encrypter_encrypt_ballot_r::status" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="variable">
+<dt id="c.Voting_Encrypter_encrypt_ballot_r::message">
+<span class="target" id="struct_voting___encrypter__encrypt__ballot__r_1affb8ca154b3f4ec84d5f8a917c6ac0ca"></span>struct <a class="reference internal" href="messages.html#c.register_ballot_message" title="register_ballot_message">register_ballot_message</a> <code class="descname">message</code><a class="headerlink" href="#c.Voting_Encrypter_encrypt_ballot_r::message" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="variable">
+<dt id="c.Voting_Encrypter_encrypt_ballot_r::tracker">
+<span class="target" id="struct_voting___encrypter__encrypt__ballot__r_1af39e40fd066f714256a7c472130f5a92"></span>struct <a class="reference internal" href="messages.html#c.ballot_tracker" title="ballot_tracker">ballot_tracker</a> <code class="descname">tracker</code><a class="headerlink" href="#c.Voting_Encrypter_encrypt_ballot_r::tracker" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="variable">
+<dt id="c.Voting_Encrypter_encrypt_ballot_r::id">
+<span class="target" id="struct_voting___encrypter__encrypt__ballot__r_1a802e4f52e8a1565c7bad104dee72a166"></span>struct <a class="reference internal" href="messages.html#c.ballot_identifier" title="ballot_identifier">ballot_identifier</a> <code class="descname">id</code><a class="headerlink" href="#c.Voting_Encrypter_encrypt_ballot_r::id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="status-codes">
+<h2>Status Codes<a class="headerlink" href="#status-codes" title="Permalink to this headline">¶</a></h2>
+<dl class="enum">
+<dt id="c.Voting_Encrypter_status">
+<span class="target" id="encrypter_8h_1a1df9284b658dfef0a36f1b9656f18cc0"></span><em class="property">enum </em><code class="descname">Voting_Encrypter_status</code><a class="headerlink" href="#c.Voting_Encrypter_status" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>Values:</em></p>
+<dl class="enumvalue">
+<dt id="c.VOTING_ENCRYPTER_SUCCESS">
+<span class="target" id="encrypter_8h_1a1df9284b658dfef0a36f1b9656f18cc0a2106bd5d4404832ba01b3af57979f6df"></span><code class="descname">VOTING_ENCRYPTER_SUCCESS</code><a class="headerlink" href="#c.VOTING_ENCRYPTER_SUCCESS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="enumvalue">
+<dt id="c.VOTING_ENCRYPTER_INSUFFICIENT_MEMORY">
+<span class="target" id="encrypter_8h_1a1df9284b658dfef0a36f1b9656f18cc0a236ed805a5669a6f394b4b7647bb25f6"></span><code class="descname">VOTING_ENCRYPTER_INSUFFICIENT_MEMORY</code><a class="headerlink" href="#c.VOTING_ENCRYPTER_INSUFFICIENT_MEMORY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="enumvalue">
+<dt id="c.VOTING_ENCRYPTER_SERIALIZE_ERROR">
+<span class="target" id="encrypter_8h_1a1df9284b658dfef0a36f1b9656f18cc0a0e19a972236ac6a32e22e49a87f78132"></span><code class="descname">VOTING_ENCRYPTER_SERIALIZE_ERROR</code><a class="headerlink" href="#c.VOTING_ENCRYPTER_SERIALIZE_ERROR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="enumvalue">
+<dt id="c.VOTING_ENCRYPTER_DESERIALIZE_ERROR">
+<span class="target" id="encrypter_8h_1a1df9284b658dfef0a36f1b9656f18cc0a92e1c8c318e05f3600fddf9dab70f620"></span><code class="descname">VOTING_ENCRYPTER_DESERIALIZE_ERROR</code><a class="headerlink" href="#c.VOTING_ENCRYPTER_DESERIALIZE_ERROR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+  <div class="t-pagination clearfix">
+    <span>
+      ← <a href="../keyceremony/messages.html" title="Key Ceremony Messages">Key Ceremony Messages</a>
+    </span>
+    <span style="float:right">
+      <a href="coordinator.html" title="Voting Coordinator">Voting Coordinator</a> →
+    </span>
+  </div>
+</div><footer class="t-foot">
+    &copy; Copyright 1970, Jake Waksbaum.
+    <br>
+    A <a href="https://typlog.com/">typlog</a> <a href="https://github.com/typlog/sphinx-typlog-theme">sphinx theme</a>,
+    designed by <a href="https://lepture.com/">Hsiaoming Yang</a>.
+</footer>
+  </div>
+  <script>$(function(){$(".t-head_menu").on("click",function(){$("body").addClass("_expand")});$(".t-body").on("click",function(){$("body").removeClass("_expand")});$(".t-sidebar_close").on("click",function(){$("body").removeClass("_expand")});$("a.footnote-reference").on("click",function(e){e.preventDefault();var id=$(this).attr("href");var html=$(id).find("td.label + td").html();var w=Math.max(document.documentElement.clientWidth,window.innerWidth||0);var style="top:"+e.pageY+"px;";if(w>560){style+="width:480px;";if(e.pageX>240&&e.pageX+240<w){style+="left:"+(e.pageX-240)+"px;"}else if(e.pageX<=240){style+="left:20px;"}else{style+="right:20px;"}}showFootnote(html,style)});function showFootnote(html,style){var CONTENT_ID="typlog-footnote-content";var content=document.getElementById(CONTENT_ID);if(!content){content=document.createElement("div");content.id=CONTENT_ID;$(".t-body").append(content)}var MASK_ID="typlog-footnote-mask";var mask=document.getElementById(MASK_ID);if(!mask){mask=document.createElement("div");mask.id=MASK_ID;document.body.appendChild(mask);mask.addEventListener("click",function(){content.className="";mask.className=""})}content.innerHTML=html;content.setAttribute("style",style);content.className="_active";mask.className="_active"}function fetchGitHubRepo(repo){var url="https://api.github.com/repos/"+repo;$.getJSON(url,function(data){var counts=[+new Date,data.stargazers_count,data.forks_count];localStorage.setItem("gh:"+repo,JSON.stringify(counts));updateGitHubStats(counts[1],counts[2])})}function updateGitHubStats(stars,forks){$(".github_stars strong").text(stars);$(".github_forks strong").text(forks)}function initGitHub(url){if(!url){return}var repo=url.replace("https://github.com/","");var cache=localStorage.getItem("gh:"+repo);if(cache){try{var counts=JSON.parse(cache);updateGitHubStats(counts[1],counts[2]);var delta=new Date-counts[0];if(delta<0||delta>9e5){fetchGitHubRepo(repo)}}catch(error){fetchGitHubRepo(repo)}}else{fetchGitHubRepo(repo)}}initGitHub($(".github").attr("href"))});</script>
+</body>
+</html>

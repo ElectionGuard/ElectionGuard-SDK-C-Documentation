@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voting Coordinator &mdash; ElectionGuard SDK  documentation</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono"><link rel="stylesheet" href="../../_static/typlog.css?v=0.7.3" type="text/css" />
+  <link rel="stylesheet" href="../../_static/theme.css?v=0.7.3" type="text/css" />
+      <link rel="index" title="Index" href="../../genindex.html"/>
+      <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="ElectionGuard SDK  documentation" href="../../index.html"/>
+      <link rel="up" title="API Reference" href="../index.html"/>
+      <link rel="next" title="Voting Messsages" href="messages.html"/>
+      <link rel="prev" title="Voting Encrypter" href="encrypter.html"/>
+  <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create', '');ga('send', 'pageview');</script>
+  <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ElectionGuard SDK">
+  <meta property="og:title" content="Voting Coordinator">
+    <meta property="og:description" content="Building E2E verifiable elections.">
+  <meta name="twitter:card" content="summary">
+</head>
+<body role="document" data-page="api/voting/coordinator">
+  <header class="t-head">
+    <div class="t-head_menu"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M64 384h384v-42.666H64V384zm0-106.666h384v-42.667H64v42.667zM64 128v42.665h384V128H64z"/></svg></div>
+    <a class="t-head_logo" href="../../index.html">ElectionGuard SDK
+    </a>
+  </header>
+  <aside class="t-sidebar">
+    <div class="t-sidebar_close">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M405 136.798L375.202 107 256 226.202 136.798 107 107 136.798 226.202 256 107 375.202 136.798 405 256 285.798 375.202 405 405 375.202 285.798 256z"/></svg>
+    </div>
+    <div class="inner">
+<a class="logo" href="../../index.html">
+    ElectionGuard SDK
+</a><div class="logo_desc">Building E2E verifiable elections.</div>
+<div class="github_wrap">
+  <a class="github" href="https://github.com/microsoft/ElectionGuard-SDK" target="_blank">
+    <span class="github_icon"></span>
+    <span class="github_stars">
+      <strong>-</strong>stars
+    </span>
+    <span class="github_forks">
+      <strong>-</strong>forks
+    </span>
+  </a>
+</div><div class="globaltoc">
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../keyceremony.html">Key Ceremony</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../voting.html">Voting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../decryption.html">Decryption</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../keyceremony/trustee.html">Key Ceremony Trustee</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../keyceremony/coordinator.html">Key Ceremony Coordinator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../keyceremony/messages.html">Key Ceremony Messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encrypter.html">Voting Encrypter</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Voting Coordinator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="messages.html">Voting Messsages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tracker.html">Ballot Tracker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../decryption/trustee.html">Decryption Trustee</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../decryption/coordinator.html">Decryption Coordinator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../decryption/messages.html">Decryption Messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../trustee_state.html">Trustee State</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../crypto.html">Crypto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../max_values.html">Maximum Values</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">Example Clients</a></li>
+</ul>
+
+</div>
+<div id="searchbox">
+  <form class="search" action="../../search.html" method="get">
+    <div class="input-group">
+      <input type="text" name="q" placeholder="Search" />
+      <button type="submit">Go</button>
+    </div>
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+    </div>
+  </aside>
+  <div class="t-content">
+    <div class="t-body yue">
+  <div class="section" id="voting-coordinator">
+<h1>Voting Coordinator<a class="headerlink" href="#voting-coordinator" title="Permalink to this headline">¶</a></h1>
+<dl class="typedef">
+<dt id="c.Voting_Coordinator">
+<span class="target" id="voting_2coordinator_8h_1a8fcd543d8077a25c9fe9864e30b0ff73"></span><em class="property">typedef </em>struct Voting_Coordinator_s* <code class="descname">Voting_Coordinator</code><a class="headerlink" href="#c.Voting_Coordinator" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<div class="section" id="initialization-and-freeing">
+<h2>Initialization and Freeing<a class="headerlink" href="#initialization-and-freeing" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="c.Voting_Coordinator_new">
+<span class="target" id="voting_2coordinator_8h_1aeea9937ce536021215e8f093f16b9d4b"></span>struct <a class="reference internal" href="#c.Voting_Coordinator_new_r" title="Voting_Coordinator_new_r">Voting_Coordinator_new_r</a> <code class="descname">Voting_Coordinator_new</code><span class="sig-paren">(</span>uint32_t<em>&nbsp;num_selections</em><span class="sig-paren">)</span><a class="headerlink" href="#c.Voting_Coordinator_new" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new voting coordinator. </p>
+</dd></dl>
+
+<dl class="struct">
+<dt id="c.Voting_Coordinator_new_r">
+<span class="target" id="struct_voting___coordinator__new__r"></span><em class="property">struct </em><code class="descname">Voting_Coordinator_new_r</code><a class="headerlink" href="#c.Voting_Coordinator_new_r" title="Permalink to this definition">¶</a></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="variable">
+<dt id="c.Voting_Coordinator_new_r::status">
+<span class="target" id="struct_voting___coordinator__new__r_1a7a2d8ca5baad781e8b22aa6db07b6b34"></span><a class="reference internal" href="#c.Voting_Coordinator_status" title="Voting_Coordinator_status">Voting_Coordinator_status</a> <code class="descname">status</code><a class="headerlink" href="#c.Voting_Coordinator_new_r::status" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="variable">
+<dt id="c.Voting_Coordinator_new_r::coordinator">
+<span class="target" id="struct_voting___coordinator__new__r_1ae38bf01be6018cf93ff009864e7aa2bd"></span><a class="reference internal" href="#c.Voting_Coordinator" title="Voting_Coordinator">Voting_Coordinator</a> <code class="descname">coordinator</code><a class="headerlink" href="#c.Voting_Coordinator_new_r::coordinator" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.Voting_Coordinator_free">
+<span class="target" id="voting_2coordinator_8h_1a58ea0e5b676dfc3cb333a291fa8c6f86"></span>void <code class="descname">Voting_Coordinator_free</code><span class="sig-paren">(</span><a class="reference internal" href="#c.Voting_Coordinator" title="Voting_Coordinator">Voting_Coordinator</a><em>&nbsp;coordinator</em><span class="sig-paren">)</span><a class="headerlink" href="#c.Voting_Coordinator_free" title="Permalink to this definition">¶</a></dt>
+<dd><p>Free a ballot box. </p>
+</dd></dl>
+
+</div>
+<div class="section" id="registering-casting-and-spoiling-ballots">
+<h2>Registering, Casting and Spoiling Ballots<a class="headerlink" href="#registering-casting-and-spoiling-ballots" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="c.Voting_Coordinator_register_ballot">
+<span class="target" id="voting_2coordinator_8h_1aeeabdaa291963fda2629ee85b5499bf4"></span>enum <a class="reference internal" href="#c.Voting_Coordinator_status" title="Voting_Coordinator_status">Voting_Coordinator_status</a> <code class="descname">Voting_Coordinator_register_ballot</code><span class="sig-paren">(</span><a class="reference internal" href="#c.Voting_Coordinator" title="Voting_Coordinator">Voting_Coordinator</a><em>&nbsp;coordinator</em>, struct  <a class="reference internal" href="messages.html#c.register_ballot_message" title="register_ballot_message">register_ballot_message</a><em>&nbsp;message</em><span class="sig-paren">)</span><a class="headerlink" href="#c.Voting_Coordinator_register_ballot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Register a ballot with the coordinator so that it may be cast or spoiled. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.Voting_Coordinator_cast_ballot">
+<span class="target" id="voting_2coordinator_8h_1a64a7cb81d36dad7195e5026a47b97a31"></span>enum <a class="reference internal" href="#c.Voting_Coordinator_status" title="Voting_Coordinator_status">Voting_Coordinator_status</a> <code class="descname">Voting_Coordinator_cast_ballot</code><span class="sig-paren">(</span><a class="reference internal" href="#c.Voting_Coordinator" title="Voting_Coordinator">Voting_Coordinator</a><em>&nbsp;coordinator</em>, struct  <a class="reference internal" href="messages.html#c.ballot_identifier" title="ballot_identifier">ballot_identifier</a><em>&nbsp;ballot_id</em><span class="sig-paren">)</span><a class="headerlink" href="#c.Voting_Coordinator_cast_ballot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mark the ballot specified by ballot_id as cast. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="c.Voting_Coordinator_spoil_ballot">
+<span class="target" id="voting_2coordinator_8h_1a755de4f37dd98c7f085f3c32bda1a72d"></span>enum <a class="reference internal" href="#c.Voting_Coordinator_status" title="Voting_Coordinator_status">Voting_Coordinator_status</a> <code class="descname">Voting_Coordinator_spoil_ballot</code><span class="sig-paren">(</span><a class="reference internal" href="#c.Voting_Coordinator" title="Voting_Coordinator">Voting_Coordinator</a><em>&nbsp;coordinator</em>, struct  <a class="reference internal" href="messages.html#c.ballot_identifier" title="ballot_identifier">ballot_identifier</a><em>&nbsp;ballot_id</em><span class="sig-paren">)</span><a class="headerlink" href="#c.Voting_Coordinator_spoil_ballot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mark the ballot specified by ballot_id as spoiled. </p>
+</dd></dl>
+
+</div>
+<div class="section" id="exporting-ballots">
+<h2>Exporting Ballots<a class="headerlink" href="#exporting-ballots" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="c.Voting_Coordinator_export_ballots">
+<span class="target" id="voting_2coordinator_8h_1a303c38746e7d4972dfd3f32761365143"></span>enum <a class="reference internal" href="#c.Voting_Coordinator_status" title="Voting_Coordinator_status">Voting_Coordinator_status</a> <code class="descname">Voting_Coordinator_export_ballots</code><span class="sig-paren">(</span><a class="reference internal" href="#c.Voting_Coordinator" title="Voting_Coordinator">Voting_Coordinator</a><em>&nbsp;coordinator</em>, FILE *<em>&nbsp;out</em><span class="sig-paren">)</span><a class="headerlink" href="#c.Voting_Coordinator_export_ballots" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write all of the cast and spoiled ballots to out. </p>
+</dd></dl>
+
+</div>
+<div class="section" id="status-codes">
+<h2>Status Codes<a class="headerlink" href="#status-codes" title="Permalink to this headline">¶</a></h2>
+<dl class="enum">
+<dt id="c.Voting_Coordinator_status">
+<span class="target" id="voting_2coordinator_8h_1aeacfb91d6d8620ab948bce6e52bb5839"></span><em class="property">enum </em><code class="descname">Voting_Coordinator_status</code><a class="headerlink" href="#c.Voting_Coordinator_status" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>Values:</em></p>
+<dl class="enumvalue">
+<dt id="c.VOTING_COORDINATOR_SUCCESS">
+<span class="target" id="voting_2coordinator_8h_1aeacfb91d6d8620ab948bce6e52bb5839a0adfbb52a4335dd0fdaca4209f4e4308"></span><code class="descname">VOTING_COORDINATOR_SUCCESS</code><a class="headerlink" href="#c.VOTING_COORDINATOR_SUCCESS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="enumvalue">
+<dt id="c.VOTING_COORDINATOR_INSUFFICIENT_MEMORY">
+<span class="target" id="voting_2coordinator_8h_1aeacfb91d6d8620ab948bce6e52bb5839a6186b105a01f8e81d1525a4d00e10957"></span><code class="descname">VOTING_COORDINATOR_INSUFFICIENT_MEMORY</code><a class="headerlink" href="#c.VOTING_COORDINATOR_INSUFFICIENT_MEMORY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="enumvalue">
+<dt id="c.VOTING_COORDINATOR_INVALID_BALLOT_ID">
+<span class="target" id="voting_2coordinator_8h_1aeacfb91d6d8620ab948bce6e52bb5839a44cbd8d783c70883b3e60435aa076e9d"></span><code class="descname">VOTING_COORDINATOR_INVALID_BALLOT_ID</code><a class="headerlink" href="#c.VOTING_COORDINATOR_INVALID_BALLOT_ID" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="enumvalue">
+<dt id="c.VOTING_COORDINATOR_INVALID_BALLOT">
+<span class="target" id="voting_2coordinator_8h_1aeacfb91d6d8620ab948bce6e52bb5839a597c81d4fc594b159fff3188d86e2a98"></span><code class="descname">VOTING_COORDINATOR_INVALID_BALLOT</code><a class="headerlink" href="#c.VOTING_COORDINATOR_INVALID_BALLOT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="enumvalue">
+<dt id="c.VOTING_COORDINATOR_UNREGISTERED_BALLOT">
+<span class="target" id="voting_2coordinator_8h_1aeacfb91d6d8620ab948bce6e52bb5839ac5649a522ae04ee2e6bd7b7862305916"></span><code class="descname">VOTING_COORDINATOR_UNREGISTERED_BALLOT</code><a class="headerlink" href="#c.VOTING_COORDINATOR_UNREGISTERED_BALLOT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="enumvalue">
+<dt id="c.VOTING_COORDINATOR_DUPLICATE_BALLOT">
+<span class="target" id="voting_2coordinator_8h_1aeacfb91d6d8620ab948bce6e52bb5839a9d96afd1475271d9f7ca1e58e945a306"></span><code class="descname">VOTING_COORDINATOR_DUPLICATE_BALLOT</code><a class="headerlink" href="#c.VOTING_COORDINATOR_DUPLICATE_BALLOT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="enumvalue">
+<dt id="c.VOTING_COORDINATOR_TIMED_OUT_BALLOT">
+<span class="target" id="voting_2coordinator_8h_1aeacfb91d6d8620ab948bce6e52bb5839abddaa6cfb33af42b47e7d7f51d46f5d5"></span><code class="descname">VOTING_COORDINATOR_TIMED_OUT_BALLOT</code><a class="headerlink" href="#c.VOTING_COORDINATOR_TIMED_OUT_BALLOT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="enumvalue">
+<dt id="c.VOTING_COORDINATOR_IO_ERROR">
+<span class="target" id="voting_2coordinator_8h_1aeacfb91d6d8620ab948bce6e52bb5839a11465e0a4319daa201293d204f3182fd"></span><code class="descname">VOTING_COORDINATOR_IO_ERROR</code><a class="headerlink" href="#c.VOTING_COORDINATOR_IO_ERROR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="enumvalue">
+<dt id="c.VOTING_COORDINATOR_SERIALIZE_ERROR">
+<span class="target" id="voting_2coordinator_8h_1aeacfb91d6d8620ab948bce6e52bb5839a64af9f21222cb4b272bf3f83ab3ca2d9"></span><code class="descname">VOTING_COORDINATOR_SERIALIZE_ERROR</code><a class="headerlink" href="#c.VOTING_COORDINATOR_SERIALIZE_ERROR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="enumvalue">
+<dt id="c.VOTING_COORDINATOR_DESERIALIZE_ERROR">
+<span class="target" id="voting_2coordinator_8h_1aeacfb91d6d8620ab948bce6e52bb5839a79e66291034f02ba12b8fde0bc53daf7"></span><code class="descname">VOTING_COORDINATOR_DESERIALIZE_ERROR</code><a class="headerlink" href="#c.VOTING_COORDINATOR_DESERIALIZE_ERROR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+  <div class="t-pagination clearfix">
+    <span>
+      ← <a href="encrypter.html" title="Voting Encrypter">Voting Encrypter</a>
+    </span>
+    <span style="float:right">
+      <a href="messages.html" title="Voting Messsages">Voting Messsages</a> →
+    </span>
+  </div>
+</div><footer class="t-foot">
+    &copy; Copyright 1970, Jake Waksbaum.
+    <br>
+    A <a href="https://typlog.com/">typlog</a> <a href="https://github.com/typlog/sphinx-typlog-theme">sphinx theme</a>,
+    designed by <a href="https://lepture.com/">Hsiaoming Yang</a>.
+</footer>
+  </div>
+  <script>$(function(){$(".t-head_menu").on("click",function(){$("body").addClass("_expand")});$(".t-body").on("click",function(){$("body").removeClass("_expand")});$(".t-sidebar_close").on("click",function(){$("body").removeClass("_expand")});$("a.footnote-reference").on("click",function(e){e.preventDefault();var id=$(this).attr("href");var html=$(id).find("td.label + td").html();var w=Math.max(document.documentElement.clientWidth,window.innerWidth||0);var style="top:"+e.pageY+"px;";if(w>560){style+="width:480px;";if(e.pageX>240&&e.pageX+240<w){style+="left:"+(e.pageX-240)+"px;"}else if(e.pageX<=240){style+="left:20px;"}else{style+="right:20px;"}}showFootnote(html,style)});function showFootnote(html,style){var CONTENT_ID="typlog-footnote-content";var content=document.getElementById(CONTENT_ID);if(!content){content=document.createElement("div");content.id=CONTENT_ID;$(".t-body").append(content)}var MASK_ID="typlog-footnote-mask";var mask=document.getElementById(MASK_ID);if(!mask){mask=document.createElement("div");mask.id=MASK_ID;document.body.appendChild(mask);mask.addEventListener("click",function(){content.className="";mask.className=""})}content.innerHTML=html;content.setAttribute("style",style);content.className="_active";mask.className="_active"}function fetchGitHubRepo(repo){var url="https://api.github.com/repos/"+repo;$.getJSON(url,function(data){var counts=[+new Date,data.stargazers_count,data.forks_count];localStorage.setItem("gh:"+repo,JSON.stringify(counts));updateGitHubStats(counts[1],counts[2])})}function updateGitHubStats(stars,forks){$(".github_stars strong").text(stars);$(".github_forks strong").text(forks)}function initGitHub(url){if(!url){return}var repo=url.replace("https://github.com/","");var cache=localStorage.getItem("gh:"+repo);if(cache){try{var counts=JSON.parse(cache);updateGitHubStats(counts[1],counts[2]);var delta=new Date-counts[0];if(delta<0||delta>9e5){fetchGitHubRepo(repo)}}catch(error){fetchGitHubRepo(repo)}}else{fetchGitHubRepo(repo)}}initGitHub($(".github").attr("href"))});</script>
+</body>
+</html>
